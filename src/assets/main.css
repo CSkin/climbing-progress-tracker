@@ -1,6 +1,8 @@
 @import './base.css';
 
-#app {
+main {
   height: 100%;
-  padding: 2rem;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  display: flex;
 }
