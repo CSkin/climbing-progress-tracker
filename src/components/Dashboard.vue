@@ -1,5 +1,5 @@
-<script>
-
+<script setup>
+import Continue from './Continue.vue'
 </script>
 
 <template>
@@ -14,8 +14,7 @@
 
     <section id="continue-prompt">
         <p>Tap or swipe to view timeline</p>
-        <p id="arrow">&#x2192</p>
-        <img alt="Continue" src="src/assets/continue.svg" />
+        <Continue />
     </section>
 </template>
 
@@ -24,7 +23,11 @@ h1, p {
     text-align: center;
 }
 
-#arrow {
+h1 {
     font-size: 2em;
+}
+
+p {
+    margin-bottom: 1em;
 }
 </style>

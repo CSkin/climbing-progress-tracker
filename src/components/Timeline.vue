@@ -1,15 +1,15 @@
 <script setup>
 import DayOff from './DayOff.vue'
-import DayWithClimbs from './DayWithClimbs.vue'
+import DayClimbsLogged from './DayClimbsLogged.vue'
 </script>
 
 <template>
     <div class="day"><DayOff /></div>
-    <div class="day"><DayWithClimbs /></div>
+    <div class="day"><DayClimbsLogged /></div>
     <div class="day"><DayOff /></div>
     <div class="day"><DayOff /></div>
     <div class="day"><DayOff /></div>
-    <div class="day"><DayWithClimbs /></div>
+    <div class="day"><DayClimbsLogged /></div>
     <div class="day"><DayOff /></div>
 </template>
 
@@ -17,9 +17,5 @@ import DayWithClimbs from './DayWithClimbs.vue'
 .day {
     line-height: normal;
     padding-left: 10vw;
-}
-
-img {
-    display: block;
 }
 </style>
