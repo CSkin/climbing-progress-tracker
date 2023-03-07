@@ -1,21 +1,22 @@
 <script setup>
 import DayOff from './DayOff.vue'
 import DayClimbsLogged from './DayClimbsLogged.vue'
+import Back from './Back.vue'
+import Add from './Add.vue'
 </script>
 
 <template>
-    <div class="day"><DayOff /></div>
-    <div class="day"><DayClimbsLogged /></div>
-    <div class="day"><DayOff /></div>
-    <div class="day"><DayOff /></div>
-    <div class="day"><DayOff /></div>
-    <div class="day"><DayClimbsLogged /></div>
-    <div class="day"><DayOff /></div>
+    <DayOff />
+    <DayClimbsLogged />
+    <DayOff />
+    <DayOff />
+    <DayOff />
+    <DayClimbsLogged />
+    <DayOff />
+    <Back />
+    <Add />
 </template>
 
 <style scoped>
-.day {
-    line-height: normal;
-    padding-left: 10vw;
-}
+
 </style>

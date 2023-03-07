@@ -4,8 +4,8 @@
   --vt-c-white-soft: #e6e6e6;
   --vt-c-white-mute: #bbbbbb;
 
-  --vt-c-black: #222222;
-  --vt-c-black-soft: #333333;
+  --vt-c-black: #000000;
+  --vt-c-black-soft: #222222;
   --vt-c-black-mute: #555555;
 
   --vt-c-indigo: #2c3e50;
@@ -26,6 +26,7 @@
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
+  --color-background-inv: var(--vt-c-black);
 
   --color-border: var(--vt-c-divider-light-2);
   --color-border-hover: var(--vt-c-divider-light-1);
@@ -44,6 +45,7 @@
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
     --color-background-mute: var(--vt-c-black-mute);
+    --color-background-inv: var(--vt-c-white);
 
     --color-border: var(--vt-c-divider-dark-2);
     --color-border-hover: var(--vt-c-divider-dark-1);
