@@ -3,19 +3,30 @@
 </script>
 
 <template>
-    <svg xmlns="http://www.w3.org/2000/svg"
-         width="20" height="8">
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 10 10">
 
-        <circle cx="10" cy="4" r="2.5"/>
+            <circle cx="5" cy="5" r="5"/>
 
-    </svg>
+        </svg>
+    </div>
 </template>
 
 <style scoped>
 @import '../assets/base.css';
 
+div {
+    width: 3vh;
+    height: 1.333vh;
+    margin-left: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 svg {
-    display: block;
+    height: 1vh;
     fill: var(--color-day-off);
 }
 </style>

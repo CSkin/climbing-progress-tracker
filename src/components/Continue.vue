@@ -4,13 +4,13 @@
 
 <template>
     <svg xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 30 30">
+         viewBox="0 0 10 10">
 
-        <circle cx="15" cy="15" r="14"/>
+        <circle cx="5" cy="5" r="4.666"/>
 
-        <path d="M 22 15 H 8 
-                 M 22 15 L 16 9 
-                 M 22 15 L 16 21"/>
+        <path d="M 7.333 5 H 2.666 
+                 M 7.333 5 L 5.333 3 
+                 M 7.333 5 L 5.333 7"/>
 
     </svg>
 </template>
@@ -24,7 +24,7 @@ svg {
     margin: 0 auto;
     fill: transparent;
     stroke: var(--color-text);
-    stroke-width: 2;
+    stroke-width: 0.666;
     stroke-linecap: round;
 }
 </style>
