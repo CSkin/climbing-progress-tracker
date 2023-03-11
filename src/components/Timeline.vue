@@ -7,6 +7,14 @@ import Add from './Add.vue'
 
 <template>
     <DayOff />
+    <DayOff />
+    <DayOff />
+    <DayOff />
+    <DayOff />
+    <DayOff />
+    <DayOff />
+    <DayOff />
+    <DayOff />
     <DayClimbsLogged />
     <DayOff />
     <DayOff />
