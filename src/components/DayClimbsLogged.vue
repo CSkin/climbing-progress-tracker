@@ -1,6 +1,7 @@
 <script setup>
 import Circle from './Circle.vue'
 import Edit from './Edit.vue'
+import Climb from './Climb.vue'
 </script>
 
 <template>
@@ -15,7 +16,16 @@ import Edit from './Edit.vue'
                 <Edit />
             </div>
             <div class="climbs-logged">
-                <div class="climb"></div>
+                <Climb />
+                <Climb />
+                <Climb />
+                <Climb />
+                <Climb />
+                <Climb />
+                <Climb />
+                <Climb />
+                <Climb />
+                <Climb />
             </div>
         </div>
     </div> 
@@ -24,30 +34,29 @@ import Edit from './Edit.vue'
 <style scoped>
 @import '../assets/base.css';
 
-:root {
-  --day-header-height: 3.333vh;
-}
-
 .container {
     margin: 0 5vw 0 10vw;
     display: flex;
+    --day-header-height: 2.4em;
 }
 
 .bead {
     width: 3vh;
-    height: var(--day-header-height);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: start;
 }
 
 .bead > svg {
+    margin-top: calc((var(--day-header-height) - 2.5vh) / 2);
     height: 2.5vh;
     fill: var(--color-day-climbs-logged);
 }
 
 .day-content {
     margin-left: 1em;
+    --day-content-max-width: 75vw;
+    max-width: var(--day-content-max-width);
 }
 
 .date {
@@ -62,5 +71,10 @@ import Edit from './Edit.vue'
     height: 1.2em;
     margin-left: 1em;
     fill: var(--color-text);
+}
+
+.climbs-logged {
+    border-top: solid var(--color-text);
+    padding-top: 0.6em;
 }
 </style>
