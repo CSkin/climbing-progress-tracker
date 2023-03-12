@@ -14,8 +14,6 @@
 </template>
 
 <style scoped>
-@import '../assets/base.css';
-
 div {
     width: 3vh;
     height: 1.333vh;

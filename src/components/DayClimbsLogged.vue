@@ -32,8 +32,6 @@ import Climb from './Climb.vue'
 </template>
 
 <style scoped>
-@import '../assets/base.css';
-
 .container {
     margin: 0 5vw 0 10vw;
     display: flex;

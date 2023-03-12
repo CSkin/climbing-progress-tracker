@@ -16,8 +16,6 @@
 </template>
 
 <style scoped>
-@import '../assets/base.css';
-
 svg {
     display: block;
     height: 50px;

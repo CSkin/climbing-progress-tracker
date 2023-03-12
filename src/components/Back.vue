@@ -16,8 +16,6 @@
 </template>
 
 <style scoped>
-@import '../assets/base.css';
-
 svg {
     position: absolute;
     top: 2vh;

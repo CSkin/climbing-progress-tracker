@@ -12,8 +12,6 @@
 </template>
 
 <style scoped>
-@import '../assets/base.css';
-
 .climb-square {
     display: inline-block;
     --climb-square-size: calc(var(--day-content-max-width) / 7);
