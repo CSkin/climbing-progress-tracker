@@ -65,12 +65,6 @@ import Climb from './Climb.vue'
     display: inline-block;
 }
 
-.date > svg {
-    height: 1.2em;
-    margin-left: 1em;
-    fill: var(--color-text);
-}
-
 .climbs-logged {
     border-top: solid var(--color-text);
     padding-top: 0.6em;

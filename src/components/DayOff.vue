@@ -1,15 +1,10 @@
-<script>
-
+<script setup>
+import Circle from './Circle.vue'
 </script>
 
 <template>
     <div>
-        <svg xmlns="http://www.w3.org/2000/svg"
-             viewBox="0 0 10 10">
-
-            <circle cx="5" cy="5" r="5"/>
-
-        </svg>
+        <Circle />
     </div>
 </template>
 

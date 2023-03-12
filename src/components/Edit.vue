@@ -16,3 +16,11 @@
     </g>
     </svg>
 </template>
+
+<style scoped>
+svg {
+    height: 1.2em;
+    margin-left: 1em;
+    fill: var(--color-text);
+}
+</style>
