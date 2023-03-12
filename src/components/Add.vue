@@ -16,10 +16,6 @@
 
 <style scoped>
 svg {
-    position: absolute;
-    bottom: 2vh;
-    right: 2vw;
-    height: 75px;   
     fill: green;
     stroke: white;
     stroke-width: 1.333;

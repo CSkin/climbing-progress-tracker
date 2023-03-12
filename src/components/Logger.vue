@@ -1,38 +1,58 @@
 <script setup>
 import Back from './Back.vue'
 import Edit from './Edit.vue'
+import Climb from './ClimbRow.vue'
+import Add from './Add.vue'
 </script>
 
 <template>
-    <section>
-        <header>
+    <section id="header-container">
+        <header id="date-header">
             <h1>Weekday, Month ##</h1>
             <Edit />
         </header>
         <div id="date-picker-container">
             <input type="date" id="date" name="date">
             <div id="screen">
-                <img alt="Select date using calendar widget" src="../assets/calendar.svg">
+                <img alt="Open date picker" src="../assets/calendar.svg">
             </div>
         </div>
+    </section>
+    <section id="log-container">
+        <header id="log-header">
+            <h3><span></span>GRADE</h3>
+            <h3>GUESS?</h3>
+            <h3>FLASH?</h3>
+            <h3>DELETE</h3>
+        </header>
+        <Climb />
+        <Climb />
+        <Climb />
+        <Climb />
+        <Climb />
+        <button id="add-button" type="button"><Add /></button>
     </section>
     <Back />
 </template>
 
 <style scoped>
 section {
-    height: calc(4vh + 75px);
+    --header-height: calc(4vh + 75px);
+}
+
+#header-container {
+    height: var(--header-height);
     background-color: var(--color-background-mute);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-header {
+#date-header {
     max-width: calc(100% - 8vw - 150px);
 }
 
-header > * {
+#date-header > * {
     display: inline-block;
 }
 
@@ -54,7 +74,7 @@ h1 {
     align-items: center;
 }
 
-input {
+#date {
     width: calc(100% - 4px);
     height: calc(100% - 4px);
 }
@@ -76,8 +96,61 @@ input {
     pointer-events: none;
 }
 
-img {
+#screen > img {
     height: 100%;
     filter: invert(0);
+}
+
+#log-container {
+    width: 100%;
+    min-height: calc(100% - var(--header-height));
+    padding: 2vh 4vw;
+}
+
+#log-container > * {
+    width: 100%;
+}
+
+#log-header {
+    height: 3vh;
+    display: flex;
+    align-items: center;
+}
+
+h3 {
+    flex: 1;
+    text-align: center;
+    color: #808080;
+    line-height: 1;
+}
+
+h3 > span {
+    display: inline-block;
+    width: 1.5em;
+}
+
+h3:nth-of-type(1) {
+    flex: 1.75;
+    text-align: left;
+}
+
+h3:nth-of-type(1) {
+    flex: 1.75;
+    text-align: left;
+} 
+
+button {
+    height: 8vh;
+    margin: 1vh 0 2vh 0;
+    background-color: green;
+    border: solid white 5px;
+    border-radius: 2.5vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button > svg {
+    height: 100%;
 }
 </style>

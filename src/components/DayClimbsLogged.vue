@@ -1,7 +1,7 @@
 <script setup>
 import Circle from './Circle.vue'
 import Edit from './Edit.vue'
-import Climb from './Climb.vue'
+import Climb from './ClimbSquare.vue'
 </script>
 
 <template>

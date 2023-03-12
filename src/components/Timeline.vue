@@ -22,9 +22,14 @@ import Add from './Add.vue'
     <DayClimbsLogged />
     <DayOff />
     <Back />
-    <Add />
+    <Add id="add"/>
 </template>
 
 <style scoped>
-
+#add {
+    position: absolute;
+    bottom: 2vh;
+    right: 2vw;
+    height: 75px;   
+}
 </style>
