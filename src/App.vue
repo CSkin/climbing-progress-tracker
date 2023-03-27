@@ -2,10 +2,15 @@
 import Dashboard from './components/Dashboard.vue'
 import Timeline from './components/Timeline.vue'
 import Logger from './components/Logger.vue'
+import scrollIntoView from './main'
+
+function viewTimeline() {
+  scrollIntoView(document.getElementById("timeline"));
+}
 </script>
 
 <template>
-  <article id="dashboard"><Dashboard /></article>
+  <article id="dashboard" @click="viewTimeline"><Dashboard /></article>
   <article id="timeline"><Timeline /></article>
   <article id="logger"><Logger /></article>
 </template>

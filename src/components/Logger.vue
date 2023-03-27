@@ -3,6 +3,11 @@ import Back from './Back.vue'
 import Edit from './Edit.vue'
 import Climb from './ClimbRow.vue'
 import Add from './Add.vue'
+import scrollIntoView from '../main'
+
+function viewTimeline() {
+    scrollIntoView(document.getElementById("timeline"));
+}
 </script>
 
 <template>
@@ -32,7 +37,7 @@ import Add from './Add.vue'
         <Climb />
         <button id="add-button" type="button"><Add /></button>
     </section>
-    <Back />
+    <Back @click="viewTimeline"/>
 </template>
 
 <style scoped>

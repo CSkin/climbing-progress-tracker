@@ -61,7 +61,6 @@ select {
     border: solid var(--color-text) 2px;
     border-radius: 0.7vh;
     font-size: 1.5em;
-    color: var(--color-text);
     font-weight: bold;
     text-indent: 4px;
 }

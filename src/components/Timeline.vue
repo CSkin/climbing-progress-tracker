@@ -3,6 +3,15 @@ import DayOff from './DayOff.vue'
 import DayClimbsLogged from './DayClimbsLogged.vue'
 import Back from './Back.vue'
 import Add from './Add.vue'
+import scrollIntoView from '../main'
+
+function viewDashboard() {
+    scrollIntoView(document.getElementById("dashboard"));
+}
+
+function viewLogger() {
+    scrollIntoView(document.getElementById("logger"));
+}
 </script>
 
 <template>
@@ -21,8 +30,8 @@ import Add from './Add.vue'
     <DayOff />
     <DayClimbsLogged />
     <DayOff />
-    <Back />
-    <Add id="add"/>
+    <Back @click="viewDashboard"/>
+    <Add id="add" @click="viewLogger"/>
 </template>
 
 <style scoped>
