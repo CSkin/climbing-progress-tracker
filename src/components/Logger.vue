@@ -8,13 +8,8 @@ import Back from './Back.vue'
 import Edit from './Edit.vue'
 import Climb from './ClimbRow.vue'
 import Add from './Add.vue'
-import { scrollIntoView } from '../main'
 
-const refs = useAttrs()
-
-function viewTimeline() {
-    scrollIntoView(refs.timeline.value)
-}
+const props = useAttrs()
 </script>
 
 <template>
@@ -44,7 +39,7 @@ function viewTimeline() {
         <Climb />
         <button id="add-button" type="button"><Add /></button>
     </section>
-    <Back @click="viewTimeline"/>
+    <Back @click="props.viewTimeline"/>
 </template>
 
 <style scoped>

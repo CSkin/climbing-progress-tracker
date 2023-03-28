@@ -8,17 +8,8 @@ import DayOff from './DayOff.vue'
 import DayClimbsLogged from './DayClimbsLogged.vue'
 import Back from './Back.vue'
 import Add from './Add.vue'
-import { scrollIntoView } from '../main'
 
-const refs = useAttrs()
-
-function viewDashboard() {
-    scrollIntoView(refs.dashboard.value)
-}
-
-function viewLogger() {
-    scrollIntoView(refs.logger.value)
-}
+const props = useAttrs()
 </script>
 
 <template>
@@ -37,8 +28,8 @@ function viewLogger() {
     <DayOff />
     <DayClimbsLogged />
     <DayOff />
-    <Back @click="viewDashboard"/>
-    <Add id="add" @click="viewLogger"/>
+    <Back @click="props.viewDashboard"/>
+    <Add id="add" @click="props.viewLogger"/>
 </template>
 
 <style scoped>

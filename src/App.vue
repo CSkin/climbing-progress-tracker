@@ -9,21 +9,23 @@ const dashboard = ref(null)
 const timeline = ref(null)
 const logger = ref(null)
 
-const refs = {
-  dashboard: dashboard,
-  timeline: timeline,
-  logger: logger
-}
-
-function viewTimeline() {
-  scrollIntoView(timeline.value);
+const props = {
+  viewDashboard: function() {
+    scrollIntoView(dashboard.value)
+  },
+  viewTimeline: function() {
+    scrollIntoView(timeline.value)
+  },
+  viewLogger: function() {
+    scrollIntoView(logger.value)
+  }
 }
 </script>
 
 <template>
-  <article id="dashboard" ref="dashboard" @click="viewTimeline"><Dashboard /></article>
-  <article id="timeline" ref="timeline"><Timeline v-bind="refs"/></article>
-  <article id="logger" ref="logger"><Logger v-bind="refs"/></article>
+  <article id="dashboard" ref="dashboard" @click="props.viewTimeline"><Dashboard /></article>
+  <article id="timeline" ref="timeline"><Timeline v-bind="props"/></article>
+  <article id="logger" ref="logger"><Logger v-bind="props"/></article>
 </template>
 
 <style scoped>
