@@ -1,18 +1,29 @@
 <script setup>
+import { ref } from 'vue'
 import Dashboard from './components/Dashboard.vue'
 import Timeline from './components/Timeline.vue'
 import Logger from './components/Logger.vue'
-import scrollIntoView from './main'
+import { scrollIntoView } from './main'
+
+const dashboard = ref(null)
+const timeline = ref(null)
+const logger = ref(null)
+
+const refs = {
+  dashboard: dashboard,
+  timeline: timeline,
+  logger: logger
+}
 
 function viewTimeline() {
-  scrollIntoView(document.getElementById("timeline"));
+  scrollIntoView(timeline.value);
 }
 </script>
 
 <template>
-  <article id="dashboard" @click="viewTimeline"><Dashboard /></article>
-  <article id="timeline"><Timeline /></article>
-  <article id="logger"><Logger /></article>
+  <article id="dashboard" ref="dashboard" @click="viewTimeline"><Dashboard /></article>
+  <article id="timeline" ref="timeline"><Timeline v-bind="refs"/></article>
+  <article id="logger" ref="logger"><Logger v-bind="refs"/></article>
 </template>
 
 <style scoped>

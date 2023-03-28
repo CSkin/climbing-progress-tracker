@@ -5,6 +5,6 @@ import './assets/main.css'
 
 createApp(App).mount('#app')
 
-export default function scrollIntoView(el) {
+export function scrollIntoView(el) {
     el.scrollIntoView({ behavior: "smooth" });
 }

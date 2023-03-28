@@ -1,12 +1,19 @@
+<script>
+export default { inheritAttrs: false }
+</script>
+
 <script setup>
+import { useAttrs } from 'vue'
 import Back from './Back.vue'
 import Edit from './Edit.vue'
 import Climb from './ClimbRow.vue'
 import Add from './Add.vue'
-import scrollIntoView from '../main'
+import { scrollIntoView } from '../main'
+
+const refs = useAttrs()
 
 function viewTimeline() {
-    scrollIntoView(document.getElementById("timeline"));
+    scrollIntoView(refs.timeline.value)
 }
 </script>
 

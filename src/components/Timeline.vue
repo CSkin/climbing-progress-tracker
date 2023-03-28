@@ -1,16 +1,23 @@
+<script>
+export default { inheritAttrs: false }
+</script>
+
 <script setup>
+import { useAttrs } from 'vue'
 import DayOff from './DayOff.vue'
 import DayClimbsLogged from './DayClimbsLogged.vue'
 import Back from './Back.vue'
 import Add from './Add.vue'
-import scrollIntoView from '../main'
+import { scrollIntoView } from '../main'
+
+const refs = useAttrs()
 
 function viewDashboard() {
-    scrollIntoView(document.getElementById("dashboard"));
+    scrollIntoView(refs.dashboard.value)
 }
 
 function viewLogger() {
-    scrollIntoView(document.getElementById("logger"));
+    scrollIntoView(refs.logger.value)
 }
 </script>
 
