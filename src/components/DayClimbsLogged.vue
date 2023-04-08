@@ -16,16 +16,7 @@ import Climb from './ClimbSquare.vue'
                 <Edit />
             </div>
             <div class="climbs-logged">
-                <Climb />
-                <Climb />
-                <Climb />
-                <Climb />
-                <Climb />
-                <Climb />
-                <Climb />
-                <Climb />
-                <Climb />
-                <Climb />
+                <!-- <Climb /> -->
             </div>
         </div>
     </div> 

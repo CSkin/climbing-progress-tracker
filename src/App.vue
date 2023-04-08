@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
 import Dashboard from './components/Dashboard.vue'
 import Timeline from './components/Timeline.vue'
 import Logger from './components/Logger.vue'
@@ -9,7 +9,15 @@ const dashboard = ref(null)
 const timeline = ref(null)
 const logger = ref(null)
 
-const props = {
+const data = reactive([])
+
+const methods = {
+  addDay: function() {
+    data.push("day")
+  }
+}
+
+const nav = {
   viewDashboard: function() {
     scrollIntoView(dashboard.value)
   },
@@ -20,12 +28,24 @@ const props = {
     scrollIntoView(logger.value)
   }
 }
+
+const props = {
+  data: data,
+  methods: methods,
+  nav: nav
+}
 </script>
 
 <template>
-  <article id="dashboard" ref="dashboard" @click="props.viewTimeline"><Dashboard /></article>
-  <article id="timeline" ref="timeline"><Timeline v-bind="props"/></article>
-  <article id="logger" ref="logger"><Logger v-bind="props"/></article>
+  <article id="dashboard" ref="dashboard" @click="nav.viewTimeline">
+    <Dashboard v-bind="props"/>
+  </article>
+  <article id="timeline" ref="timeline">
+    <Timeline v-bind="props"/>
+  </article>
+  <article id="logger" ref="logger">
+    <Logger v-bind="props"/>
+  </article>
 </template>
 
 <style scoped>

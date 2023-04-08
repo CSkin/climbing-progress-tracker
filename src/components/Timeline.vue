@@ -13,23 +13,9 @@ const props = useAttrs()
 </script>
 
 <template>
-    <DayOff />
-    <DayOff />
-    <DayOff />
-    <DayOff />
-    <DayOff />
-    <DayOff />
-    <DayOff />
-    <DayOff />
-    <DayOff />
-    <DayClimbsLogged />
-    <DayOff />
-    <DayOff />
-    <DayOff />
-    <DayClimbsLogged />
-    <DayOff />
-    <Back @click="props.viewDashboard"/>
-    <Add id="add" @click="props.viewLogger"/>
+    <DayClimbsLogged v-for="day in props.data"/>
+    <Back @click="props.nav.viewDashboard"/>
+    <Add id="add" @click="props.nav.viewLogger"/>
 </template>
 
 <style scoped>

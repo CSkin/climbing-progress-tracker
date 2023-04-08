@@ -32,14 +32,12 @@ const props = useAttrs()
             <h3>FLASH?</h3>
             <h3>DELETE</h3>
         </header>
-        <Climb />
-        <Climb />
-        <Climb />
-        <Climb />
-        <Climb />
-        <button id="add-button" type="button"><Add /></button>
+        <!-- <Climb /> -->
+        <button id="add-button" type="button" @click="props.methods.addDay">
+            <Add />
+        </button>
     </section>
-    <Back @click="props.viewTimeline"/>
+    <Back @click="props.nav.viewTimeline"/>
 </template>
 
 <style scoped>
