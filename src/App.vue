@@ -12,8 +12,8 @@ const logger = ref(null)
 const data = reactive([])
 
 const methods = {
-  addDay: function() {
-    data.push("day")
+  addDay: function(headerDate) {
+    data.push(headerDate)
   }
 }
 
@@ -44,7 +44,7 @@ const props = {
     <Timeline v-bind="props"/>
   </article>
   <article id="logger" ref="logger">
-    <Logger v-bind="props"/>
+    <Logger v-bind="props" @add-button-clicked="methods.addDay"/>
   </article>
 </template>
 

@@ -13,7 +13,7 @@ const props = useAttrs()
 </script>
 
 <template>
-    <DayClimbsLogged v-for="day in props.data"/>
+    <DayClimbsLogged v-for="(day, index) in props.data" :header="props.data[index]"/>
     <Back @click="props.nav.viewDashboard"/>
     <Add id="add" @click="props.nav.viewLogger"/>
 </template>

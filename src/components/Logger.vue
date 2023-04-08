@@ -3,23 +3,38 @@ export default { inheritAttrs: false }
 </script>
 
 <script setup>
-import { useAttrs } from 'vue'
+import { computed, ref, useAttrs } from 'vue'
 import Back from './Back.vue'
 import Edit from './Edit.vue'
 import Climb from './ClimbRow.vue'
 import Add from './Add.vue'
+import { returnTodayString } from '../main'
 
 const props = useAttrs()
+
+const inputDate = ref(returnTodayString())
+
+const headerDate = computed(() => {
+    const inputDateObj = new Date(inputDate.value + "T12:00:00")
+    const weekday = new Intl.DateTimeFormat("en-US", { weekday: "long" }).format(inputDateObj)
+    const month = new Intl.DateTimeFormat("en-US", { month: "long" }).format(inputDateObj)
+    const date = inputDateObj.getDate()
+    const fullyear = inputDateObj.getFullYear()
+    // only show the year if it's not the current year
+    const year = fullyear != new Date().getFullYear() ? ", " + fullyear : ""
+
+    return weekday + ", " + month + " " + date + year
+})
 </script>
 
 <template>
     <section id="header-container">
         <header id="date-header">
-            <h1>Weekday, Month ##</h1>
+            <h1> {{ headerDate }} </h1>
             <Edit />
         </header>
         <div id="date-picker-container">
-            <input type="date" id="date" name="date">
+            <input type="date" id="date" name="date" v-model="inputDate">
             <div id="screen">
                 <img alt="Open date picker" src="../assets/calendar.svg">
             </div>
@@ -33,7 +48,7 @@ const props = useAttrs()
             <h3>DELETE</h3>
         </header>
         <!-- <Climb /> -->
-        <button id="add-button" type="button" @click="props.methods.addDay">
+        <button id="add-button" type="button" @click="$emit('addButtonClicked', headerDate)">
             <Add />
         </button>
     </section>

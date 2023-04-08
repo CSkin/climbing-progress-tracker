@@ -1,3 +1,7 @@
+<script>
+export default { inheritAttrs: false }
+</script>
+
 <script setup>
 import Circle from './Circle.vue'
 import Edit from './Edit.vue'
@@ -12,7 +16,7 @@ import Climb from './ClimbSquare.vue'
 
         <div class="day-content">
             <div class="date">
-                <h1>Weekday, Month ##</h1>
+                <h1> {{ $attrs['header'] }} </h1>
                 <Edit />
             </div>
             <div class="climbs-logged">
