@@ -1,20 +1,20 @@
-<script>
-export default { inheritAttrs: false }
-</script>
-
 <script setup>
-import { computed, useAttrs } from 'vue'
+import { computed, defineProps } from 'vue'
 import DayOff from './DayOff.vue'
 import DayClimbsLogged from './DayClimbsLogged.vue'
 import Back from './Back.vue'
 import Add from './Add.vue'
 
-const props = useAttrs()
+const props = defineProps({
+  data: Array,
+  methods: Object,
+  nav: Object
+})
 
 const timelineDataMap = computed(() => {
     const daysOn = props.data
     const timelineDataMap = []
-    var currDayOn, nextDayOn, numDaysOff
+    let currDayOn, nextDayOn, numDaysOff
     
     // basically we are creating a new array where on-days are represented by their indices 
     // in the main data array, and off days are represented by -1

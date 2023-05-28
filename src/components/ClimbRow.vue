@@ -1,19 +1,26 @@
 <script setup>
+import { computed, defineProps } from 'vue';
 
+const props = defineProps({
+  grade: String,
+  guess: Boolean,
+  flash: Boolean,
+  note: String
+})
 </script>
 
 <template>
     <div class="climb-row">
         <div class="dropdown container">
             <select class="grade-selector" name="Climb grade">
-                <option value="pink">Pink</option>
-                <option value="red">Red</option>
-                <option value="orange">Orange</option>
-                <option value="yellow">Yellow</option>
-                <option value="green">Green</option>
-                <option value="blue">Blue</option>
-                <option value="black">Black</option>
-                <option value="white">White</option>
+                <option value="pink" :selected="props.grade == 'pink'">Pink</option>
+                <option value="red" :selected="props.grade == 'red'">Red</option>
+                <option value="orange" :selected="props.grade == 'orange'">Orange</option>
+                <option value="yellow" :selected="props.grade == 'yellow'">Yellow</option>
+                <option value="green" :selected="props.grade == 'green'">Green</option>
+                <option value="blue" :selected="props.grade == 'blue'">Blue</option>
+                <option value="black" :selected="props.grade == 'black'">Black</option>
+                <option value="white" :selected="props.grade == 'white'">White</option>
             </select>
         </div>
         <div class="icon container">

@@ -3,14 +3,18 @@ export default { inheritAttrs: false }
 </script>
 
 <script setup>
-import { computed, ref, useAttrs } from 'vue'
+import { computed, defineProps, ref } from 'vue'
 import Back from './Back.vue'
 import Edit from './Edit.vue'
 import Climb from './ClimbRow.vue'
 import Add from './Add.vue'
 import { returnTodayString } from '../main'
 
-const props = useAttrs()
+const props = defineProps({
+  data: Array,
+  methods: Object,
+  nav: Object
+})
 
 const inputDate = ref(returnTodayString())
 
@@ -24,6 +28,15 @@ const headerDate = computed(() => {
     const year = fullyear != new Date().getFullYear() ? ", " + fullyear : ""
 
     return weekday + ", " + month + " " + date + year
+})
+
+const climbs = computed(() => {
+    const dayIndex = props.data.findIndex( (day) => day.date == inputDate.value )
+    if ( dayIndex >= 0 ){
+        return props.data[dayIndex].climbs
+    } else {
+        return []
+    }
 })
 </script>
 
@@ -47,7 +60,7 @@ const headerDate = computed(() => {
             <h3>FLASH?</h3>
             <h3>DELETE</h3>
         </header>
-        <!-- <Climb /> -->
+        <Climb v-for="climb in climbs" v-bind="climb"/>
         <button id="add-button" type="button" @click="$emit('addButtonClicked', inputDate, headerDate)">
             <Add />
         </button>

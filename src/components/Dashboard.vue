@@ -1,12 +1,12 @@
-<script>
-export default { inheritAttrs: false }
-</script>
-
 <script setup>
-import { useAttrs } from 'vue'
+import { defineProps } from 'vue'
 import Continue from './Continue.vue'
 
-const props = useAttrs()
+const props = defineProps({
+  data: Array,
+  methods: Object,
+  nav: Object
+})
 </script>
 
 <template>
