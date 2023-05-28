@@ -1,12 +1,24 @@
 <script setup>
 import { computed, defineProps } from 'vue';
+import Guess from './Guess.vue'
+import Flash from './Flash.vue'
 
 const props = defineProps({
-  grade: String,
-  guess: Boolean,
-  flash: Boolean,
-  note: String
+    grade: String,
+    guess: Boolean,
+    flash: Boolean,
+    note: String
 })
+
+const guessStatus = computed(() => ({
+    disabled: !props.guess,
+    enabled: props.guess
+}))
+
+const flashStatus = computed(() => ({
+    disabled: !props.flash,
+    enabled: props.flash
+}))
 </script>
 
 <template>
@@ -24,10 +36,12 @@ const props = defineProps({
             </select>
         </div>
         <div class="icon container">
-            <img alt="This climb's rating is uncertain." src="../assets/guess.svg">
+            <!-- <img alt="This climb's rating is uncertain." src="../assets/guess.svg"> -->
+            <Guess :class="guessStatus"/>
         </div>
         <div class="icon container">
-            <img alt="You flashed this climb." src="../assets/flash.svg">
+            <!-- <img alt="You flashed this climb." src="../assets/flash.svg"> -->
+            <Flash :class="flashStatus" />
         </div>
         <div class="icon container">
             <img alt="Remove this climb from the log." src="../assets/delete.svg">
@@ -77,8 +91,15 @@ option[value="pink"] {
     background-color: calc(pink + white);
 }
 
-img {
+img, svg {
     height: 1.8em;
-    filter: invert(0);
+}
+
+.disabled {
+    color: var(--color-background-softmute)
+}
+
+.enabled {
+    color: var(--color-text)
 }
 </style>

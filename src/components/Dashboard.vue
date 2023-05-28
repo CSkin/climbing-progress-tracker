@@ -3,9 +3,9 @@ import { defineProps } from 'vue'
 import Continue from './Continue.vue'
 
 const props = defineProps({
-  data: Array,
-  methods: Object,
-  nav: Object
+    data: Array,
+    methods: Object,
+    nav: Object
 })
 </script>
 

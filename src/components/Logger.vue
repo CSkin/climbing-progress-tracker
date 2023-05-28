@@ -11,9 +11,9 @@ import Add from './Add.vue'
 import { returnTodayString } from '../main'
 
 const props = defineProps({
-  data: Array,
-  methods: Object,
-  nav: Object
+    data: Array,
+    methods: Object,
+    nav: Object
 })
 
 const inputDate = ref(returnTodayString())

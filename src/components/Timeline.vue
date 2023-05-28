@@ -6,9 +6,9 @@ import Back from './Back.vue'
 import Add from './Add.vue'
 
 const props = defineProps({
-  data: Array,
-  methods: Object,
-  nav: Object
+    data: Array,
+    methods: Object,
+    nav: Object
 })
 
 const timelineDataMap = computed(() => {

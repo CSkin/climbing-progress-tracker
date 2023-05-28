@@ -2,10 +2,12 @@
 :root {
   --vt-c-white: #ffffff;
   --vt-c-white-soft: #e6e6e6;
+  --vt-c-white-softmute: #d1d1d1;
   --vt-c-white-mute: #bbbbbb;
 
   --vt-c-black: #000000;
   --vt-c-black-soft: #222222;
+  --vt-c-black-softmute: #3b3b3b;
   --vt-c-black-mute: #555555;
 
   --vt-c-indigo: #2c3e50;
@@ -25,6 +27,7 @@
 :root {
   --color-background: var(--vt-c-white);
   --color-background-soft: var(--vt-c-white-soft);
+  --color-background-softmute: var(--vt-c-white-soft);
   --color-background-mute: var(--vt-c-white-mute);
   --color-background-inv: var(--vt-c-black);
 
@@ -42,6 +45,7 @@
   :root {
     --color-background: var(--vt-c-black);
     --color-background-soft: var(--vt-c-black-soft);
+    --color-background-softmute: var(--vt-c-black-softmute);
     --color-background-mute: var(--vt-c-black-mute);
     --color-background-inv: var(--vt-c-white);
 
