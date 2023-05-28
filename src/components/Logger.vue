@@ -48,7 +48,7 @@ const headerDate = computed(() => {
             <h3>DELETE</h3>
         </header>
         <!-- <Climb /> -->
-        <button id="add-button" type="button" @click="$emit('addButtonClicked', headerDate)">
+        <button id="add-button" type="button" @click="$emit('addButtonClicked', inputDate, headerDate)">
             <Add />
         </button>
     </section>

@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue'
 import Dashboard from './components/Dashboard.vue'
 import Timeline from './components/Timeline.vue'
 import Logger from './components/Logger.vue'
@@ -11,9 +11,22 @@ const logger = ref(null)
 
 const data = reactive([])
 
+const datesLogged = computed(() => {
+  return data.map(day => day.date)
+})
+
 const methods = {
-  addDay: function(headerDate) {
-    data.push(headerDate)
+  addDay: function(date, header) {
+    if ( datesLogged.value.includes(date) ) {
+      // do nothing
+    } else {
+      data.push({
+        date: date,
+        header: header
+      })
+      // sort the Day objects by their Date property
+      data.sort((day1, day2) => (day1.date > day2.date) ? 1 : -1)
+    }
   }
 }
 

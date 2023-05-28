@@ -3,17 +3,44 @@ export default { inheritAttrs: false }
 </script>
 
 <script setup>
-import { useAttrs } from 'vue'
+import { computed, useAttrs } from 'vue'
 import DayOff from './DayOff.vue'
 import DayClimbsLogged from './DayClimbsLogged.vue'
 import Back from './Back.vue'
 import Add from './Add.vue'
 
 const props = useAttrs()
+
+const timelineDataMap = computed(() => {
+    const daysOn = props.data
+    const timelineDataMap = []
+    var currDayOn, nextDayOn, numDaysOff
+    
+    // basically we are creating a new array where on-days are represented by their indices 
+    // in the main data array, and off days are represented by -1
+    daysOn.forEach((day, index, array) => {
+        if ( index < array.length - 1 ) { // if this isn't the last element in the array
+            timelineDataMap.push(index)
+            currDayOn = new Date(array[index].date + "T12:00:00")
+            nextDayOn = new Date(array[index+1].date + "T12:00:00")
+            numDaysOff = (nextDayOn.getTime() - currDayOn.getTime()) / 86400000 - 1 // number of ms in a day
+            for (let n = 0; n < numDaysOff; n++) {
+                timelineDataMap.push(-1)
+            }
+        } else { // if this IS the last element in the array, just push it and we're done
+            timelineDataMap.push(index)
+        }
+    })
+
+    return timelineDataMap
+})
 </script>
 
 <template>
-    <DayClimbsLogged v-for="(day, index) in props.data" :header="props.data[index]"/>
+    <template v-for="day in timelineDataMap">
+        <DayOff v-if="Math.sign(day) == -1" />
+        <DayClimbsLogged v-else :header="props.data[day].header" />
+    </template>
     <Back @click="props.nav.viewDashboard"/>
     <Add id="add" @click="props.nav.viewLogger"/>
 </template>
