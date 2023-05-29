@@ -4,44 +4,71 @@ import Guess from './Guess.vue'
 import Flash from './Flash.vue'
 
 const props = defineProps({
-    grade: String,
-    guess: Boolean,
-    flash: Boolean,
-    note: String
+    climb: Object, // grade, guess, flash, note
+    index: Number
 })
 
-const guessStatus = computed(() => ({
-    disabled: !props.guess,
-    enabled: props.guess
+defineEmits([
+    'gradeSelected',
+    'guessIconClicked',
+    'flashIconClicked'
+])
+
+const gradeColorStyle = computed(() => {
+    let color, bgColor
+    switch (props.climb.grade) {
+        case 'pink': color = '#ff6065'; bgColor = '#ffdfe5'; break
+        case 'red': color = 'red'; bgColor = '#ff8080'; break
+        case 'orange': color = 'orange'; bgColor = '#ffd280'; break
+        case 'yellow': color = 'yellow'; bgColor = 'lightyellow'; break
+        case 'green': color = 'green'; bgColor = 'lightgreen'; break
+        case 'blue': color = 'blue'; bgColor = 'lightskyblue'; break
+        case 'black': color = 'black'; bgColor = '#aaa'; break
+        case 'white': color = 'lightgray'; bgColor = 'white'; break
+    }
+    return {
+        color: color,
+        backgroundColor: bgColor
+    }
+})
+
+const guessStatusClass = computed(() => ({
+    disabled: !props.climb.guess,
+    enabled: props.climb.guess
 }))
 
-const flashStatus = computed(() => ({
-    disabled: !props.flash,
-    enabled: props.flash
+const flashStatusClass = computed(() => ({
+    disabled: !props.climb.flash,
+    enabled: props.climb.flash
 }))
 </script>
 
 <template>
     <div class="climb-row">
         <div class="dropdown container">
-            <select class="grade-selector" name="Climb grade">
-                <option value="pink" :selected="props.grade == 'pink'">Pink</option>
-                <option value="red" :selected="props.grade == 'red'">Red</option>
-                <option value="orange" :selected="props.grade == 'orange'">Orange</option>
-                <option value="yellow" :selected="props.grade == 'yellow'">Yellow</option>
-                <option value="green" :selected="props.grade == 'green'">Green</option>
-                <option value="blue" :selected="props.grade == 'blue'">Blue</option>
-                <option value="black" :selected="props.grade == 'black'">Black</option>
-                <option value="white" :selected="props.grade == 'white'">White</option>
+            <select 
+                class="grade-selector" 
+                name="Climb grade" 
+                :style="gradeColorStyle"
+                @change="$emit('gradeSelected', props.index, $event.target.value)"
+            >
+                <option value="pink" :selected="props.climb.grade == 'pink'">Pink</option>
+                <option value="red" :selected="props.climb.grade == 'red'">Red</option>
+                <option value="orange" :selected="props.climb.grade == 'orange'">Orange</option>
+                <option value="yellow" :selected="props.climb.grade == 'yellow'">Yellow</option>
+                <option value="green" :selected="props.climb.grade == 'green'">Green</option>
+                <option value="blue" :selected="props.climb.grade == 'blue'">Blue</option>
+                <option value="black" :selected="props.climb.grade == 'black'">Black</option>
+                <option value="white" :selected="props.climb.grade == 'white'">White</option>
             </select>
         </div>
-        <div class="icon container">
+        <div class="icon container" @click="$emit('guessIconClicked')">
             <!-- <img alt="This climb's rating is uncertain." src="../assets/guess.svg"> -->
-            <Guess :class="guessStatus"/>
+            <Guess :class="guessStatusClass"/>
         </div>
-        <div class="icon container">
+        <div class="icon container" @click="$emit('flashIconClicked')">
             <!-- <img alt="You flashed this climb." src="../assets/flash.svg"> -->
-            <Flash :class="flashStatus" />
+            <Flash :class="flashStatusClass"/>
         </div>
         <div class="icon container">
             <img alt="Remove this climb from the log." src="../assets/delete.svg">
@@ -86,11 +113,6 @@ select {
     text-indent: 4px;
 }
 
-option[value="pink"] {
-    color: calc(pink + red);
-    background-color: calc(pink + white);
-}
-
 img, svg {
     height: 1.8em;
 }
@@ -100,6 +122,6 @@ img, svg {
 }
 
 .enabled {
-    color: var(--color-text)
+    color: var(--color-background-inv)
 }
 </style>

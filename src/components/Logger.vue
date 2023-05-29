@@ -16,6 +16,13 @@ const props = defineProps({
     nav: Object
 })
 
+const emit = defineEmits([
+    'addButtonClicked',
+    'gradeSelected',
+    'guessIconClicked',
+    'flashIconClicked'
+])
+
 const inputDate = ref(returnTodayString())
 
 const headerDate = computed(() => {
@@ -30,14 +37,21 @@ const headerDate = computed(() => {
     return weekday + ", " + month + " " + date + year
 })
 
+const dayIndex = computed(() => {
+    return props.data.findIndex( (day) => day.date == inputDate.value )
+})
+
 const climbs = computed(() => {
-    const dayIndex = props.data.findIndex( (day) => day.date == inputDate.value )
-    if ( dayIndex >= 0 ){
-        return props.data[dayIndex].climbs
+    if ( dayIndex.value >= 0 ){
+        return props.data[dayIndex.value].climbs
     } else {
         return []
     }
 })
+
+const handleGradeSelection = function(climbIndex, newValue) {
+    emit('gradeSelected', dayIndex.value, climbIndex, newValue)
+}
 </script>
 
 <template>
@@ -60,7 +74,14 @@ const climbs = computed(() => {
             <h3>FLASH?</h3>
             <h3>DELETE</h3>
         </header>
-        <Climb v-for="climb in climbs" v-bind="climb"/>
+        <Climb
+            v-for="(climb, climbIndex) in climbs"
+            :climb="climb"
+            :index="climbIndex"
+            @grade-selected="handleGradeSelection"
+            @guess-icon-clicked="$emit('guessIconClicked', dayIndex, climbIndex)"
+            @flash-icon-clicked="$emit('flashIconClicked', dayIndex, climbIndex)"
+        />
         <button id="add-button" type="button" @click="$emit('addButtonClicked', inputDate, headerDate)">
             <Add />
         </button>

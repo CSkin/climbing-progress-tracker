@@ -8,6 +8,9 @@ import { scrollIntoView } from './main'
 const data = reactive([])
 
 const methods = {
+  findDayIndex: function(date) {
+    return data.findIndex( (day) => day.date == date )
+  },
   addDay: function(date, header) {
     data.push({
       date: date,
@@ -16,9 +19,6 @@ const methods = {
     })
     // sort the Day objects by their Date property
     data.sort((day1, day2) => (day1.date > day2.date) ? 1 : -1)
-  },
-  findDayIndex: function(date) {
-    return data.findIndex( (day) => day.date == date )
   },
   addClimb: function(date, header) {
     let dayIndex = methods.findDayIndex(date)
@@ -30,6 +30,17 @@ const methods = {
       flash: false,
       note: null
     })
+  },
+  setGrade: function(dayIndex, climbIndex, newValue) {
+    data[dayIndex].climbs[climbIndex].grade = newValue
+  },
+  toggleGuess: function(dayIndex, climbIndex) {
+    const bool = data[dayIndex].climbs[climbIndex].guess
+    data[dayIndex].climbs[climbIndex].guess = !bool
+  },
+  toggleFlash: function(dayIndex, climbIndex) {
+    const bool = data[dayIndex].climbs[climbIndex].flash
+    data[dayIndex].climbs[climbIndex].flash = !bool
   }
 }
 
@@ -64,7 +75,13 @@ const props = {
     <Timeline v-bind="props"/>
   </article>
   <article id="logger" ref="logger">
-    <Logger v-bind="props" @add-button-clicked="methods.addClimb"/>
+    <Logger 
+      v-bind="props" 
+      @add-button-clicked="methods.addClimb"
+      @grade-selected="methods.setGrade"
+      @guess-icon-clicked="methods.toggleGuess"
+      @flash-icon-clicked="methods.toggleFlash"
+    />
   </article>
 </template>
 
