@@ -32,12 +32,22 @@ const timelineDataMap = computed(() => {
 
     return timelineDataMap
 })
+
+const handleDaySelection = function(dayIndex) {
+    const selectedDate = props.data[dayIndex].date
+    const dateObject = new Date(selectedDate + "T12:00:00")
+    const dateInputElement = document.getElementById('date')
+    dateInputElement.valueAsDate = dateObject
+    dateInputElement.dispatchEvent(new Event('input'))
+
+    props.nav.viewLogger()
+}
 </script>
 
 <template>
     <template v-for="day in timelineDataMap">
         <DayOff v-if="Math.sign(day) == -1" />
-        <DayClimbsLogged v-else v-bind="props.data[day]" />
+        <DayClimbsLogged v-else v-bind="props.data[day]" @click="handleDaySelection(day)"/>
     </template>
     <Back @click="props.nav.viewDashboard"/>
     <Add id="add" @click="props.nav.viewLogger"/>

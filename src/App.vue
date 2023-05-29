@@ -79,7 +79,7 @@ const props = {
   </article>
   <article id="logger" ref="logger">
     <Logger 
-      v-bind="props" 
+      v-bind="props"
       @add-button-clicked="methods.addClimb"
       @grade-selected="methods.setGrade"
       @guess-icon-clicked="methods.toggleGuess"
