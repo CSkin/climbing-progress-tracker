@@ -50,13 +50,18 @@ const climbs = computed(() => {
     }
 })
 
+const handleHeaderSelection = function() {
+    console.log("Header clicked")
+    document.getElementById('date').showPicker()
+}
+
 const handleGradeSelection = function(climbIndex, newValue) {
     emit('gradeSelected', dayIndex.value, climbIndex, newValue)
 }
 </script>
 
 <template>
-    <section id="header-container">
+    <section id="header-container" @click="handleHeaderSelection">
         <header id="date-header">
             <h1> {{ headerDate }} </h1>
             <Edit />
