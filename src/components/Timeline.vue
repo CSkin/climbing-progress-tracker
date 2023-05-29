@@ -19,16 +19,14 @@ const timelineDataMap = computed(() => {
     // basically we are creating a new array where on-days are represented by their indices 
     // in the main data array, and off days are represented by -1
     daysOn.forEach((day, index, array) => {
+        timelineDataMap.push(index)
         if ( index < array.length - 1 ) { // if this isn't the last element in the array
-            timelineDataMap.push(index)
             currDayOn = new Date(array[index].date + "T12:00:00")
             nextDayOn = new Date(array[index+1].date + "T12:00:00")
             numDaysOff = (nextDayOn.getTime() - currDayOn.getTime()) / 86400000 - 1 // number of ms in a day
             for (let n = 0; n < numDaysOff; n++) {
                 timelineDataMap.push(-1)
             }
-        } else { // if this IS the last element in the array, just push it and we're done
-            timelineDataMap.push(index)
         }
     })
 
@@ -39,7 +37,7 @@ const timelineDataMap = computed(() => {
 <template>
     <template v-for="day in timelineDataMap">
         <DayOff v-if="Math.sign(day) == -1" />
-        <DayClimbsLogged v-else :header="props.data[day].header" />
+        <DayClimbsLogged v-else v-bind="props.data[day]" />
     </template>
     <Back @click="props.nav.viewDashboard"/>
     <Add id="add" @click="props.nav.viewLogger"/>

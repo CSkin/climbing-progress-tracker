@@ -1,11 +1,21 @@
-<script>
-export default { inheritAttrs: false }
-</script>
-
 <script setup>
+import { computed, defineProps } from 'vue'
 import Circle from './Circle.vue'
 import Edit from './Edit.vue'
 import Climb from './ClimbSquare.vue'
+
+const props = defineProps({
+    date: String,
+    header: String,
+    climbs: Array
+})
+
+const gridColumnsStyle = computed(() => {
+    const numCols = Math.min(props.climbs.length, 7)
+    return {
+        gridTemplateColumns: `repeat(${numCols}, var(--climb-square-size))`
+    }
+})
 </script>
 
 <template>
@@ -16,11 +26,16 @@ import Climb from './ClimbSquare.vue'
 
         <div class="day-content">
             <div class="date">
-                <h1> {{ $attrs['header'] }} </h1>
+                <h1> {{ header }} </h1>
                 <Edit />
             </div>
-            <div class="climbs-logged">
-                <!-- <Climb /> -->
+            <div class="climbs-logged" :style="gridColumnsStyle">
+                <Climb 
+                    v-for="climb in climbs"
+                    :grade="climb.grade"
+                    :guess="climb.guess"
+                    :flash="climb.flash"
+                />
             </div>
         </div>
     </div> 
@@ -63,5 +78,7 @@ import Climb from './ClimbSquare.vue'
 .climbs-logged {
     border-top: solid var(--color-text);
     padding-top: 0.6em;
+    display: grid;
+    --climb-square-size: calc(var(--day-content-max-width) / 7);
 }
 </style>

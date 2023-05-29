@@ -93,13 +93,17 @@ const props = {
 article {
   height: 100%;
   min-width: 100vw;
+  display: flex;
+  flex-direction: column;
   scroll-snap-align: center;
 }
 
 #dashboard {
-  display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-around;
+}
+
+#timeline {
+  justify-content: center;
 }
 </style>

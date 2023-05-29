@@ -2,6 +2,7 @@
 import { computed, defineProps } from 'vue';
 import Guess from './Guess.vue'
 import Flash from './Flash.vue'
+import { switchGradeColorStyle } from '../main';
 
 const props = defineProps({
     climb: Object, // grade, guess, flash, note
@@ -16,21 +17,7 @@ defineEmits([
 ])
 
 const gradeColorStyle = computed(() => {
-    let text, bg
-    switch (props.climb.grade) {
-        case 'pink':   text = '#f66';          bg = '#fbc';       break
-        case 'red':    text = '#a00';          bg = '#f77';       break
-        case 'orange': text = 'orangered';     bg = 'orange';     break
-        case 'yellow': text = 'darkgoldenrod'; bg = 'yellow';     break
-        case 'green':  text = '#060';          bg = '#3c3';       break
-        case 'blue':   text = 'darkblue';      bg = 'dodgerblue'; break
-        case 'black':  text = 'black';         bg = '#777';       break
-        case 'white':  text = '#abc';          bg = 'white';      break
-    }
-    return {
-        color: text,
-        backgroundColor: bg
-    }
+    return switchGradeColorStyle(props.climb.grade)
 })
 
 const guessStatusClass = computed(() => ({
