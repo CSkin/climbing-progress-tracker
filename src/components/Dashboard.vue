@@ -10,7 +10,7 @@ const props = defineProps({
 
 <template>
     <section id="app-logo">
-        <img alt="Vue logo" src="src/assets/logo.svg" width="125" height="125" />            
+        <img alt="Vue logo" src="/src/assets/logo.svg" width="125" height="125" />            
     </section>
 
     <section id="climber-rating">
