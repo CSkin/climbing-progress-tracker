@@ -7,7 +7,6 @@ import Add from './Add.vue'
 
 const props = defineProps({
     data: Array,
-    methods: Object,
     nav: Object
 })
 
