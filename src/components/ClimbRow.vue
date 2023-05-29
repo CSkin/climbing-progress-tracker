@@ -15,20 +15,20 @@ defineEmits([
 ])
 
 const gradeColorStyle = computed(() => {
-    let color, bgColor
+    let text, bg
     switch (props.climb.grade) {
-        case 'pink': color = '#ff6065'; bgColor = '#ffdfe5'; break
-        case 'red': color = 'red'; bgColor = '#ff8080'; break
-        case 'orange': color = 'orange'; bgColor = '#ffd280'; break
-        case 'yellow': color = 'yellow'; bgColor = 'lightyellow'; break
-        case 'green': color = 'green'; bgColor = 'lightgreen'; break
-        case 'blue': color = 'blue'; bgColor = 'lightskyblue'; break
-        case 'black': color = 'black'; bgColor = '#aaa'; break
-        case 'white': color = 'lightgray'; bgColor = 'white'; break
+        case 'pink':   text = '#f66';           bg = '#fbc';       break
+        case 'red':    text = '#a00';           bg = '#f77';       break
+        case 'orange': text = 'orangered';      bg = 'orange';     break
+        case 'yellow': text = 'goldenrod';      bg = 'yellow';     break
+        case 'green':  text = '#060';           bg = '#3c3';       break
+        case 'blue':   text = 'darkblue';       bg = 'dodgerblue'; break
+        case 'black':  text = 'black';          bg = '#777';       break
+        case 'white':  text = 'lightsteelblue'; bg = 'white';      break
     }
     return {
-        color: color,
-        backgroundColor: bgColor
+        color: text,
+        backgroundColor: bg
     }
 })
 
