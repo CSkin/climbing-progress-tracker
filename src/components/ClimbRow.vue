@@ -11,20 +11,21 @@ const props = defineProps({
 defineEmits([
     'gradeSelected',
     'guessIconClicked',
-    'flashIconClicked'
+    'flashIconClicked',
+    'deleteButtonClicked'
 ])
 
 const gradeColorStyle = computed(() => {
     let text, bg
     switch (props.climb.grade) {
-        case 'pink':   text = '#f66';           bg = '#fbc';       break
-        case 'red':    text = '#a00';           bg = '#f77';       break
-        case 'orange': text = 'orangered';      bg = 'orange';     break
-        case 'yellow': text = 'goldenrod';      bg = 'yellow';     break
-        case 'green':  text = '#060';           bg = '#3c3';       break
-        case 'blue':   text = 'darkblue';       bg = 'dodgerblue'; break
-        case 'black':  text = 'black';          bg = '#777';       break
-        case 'white':  text = 'lightsteelblue'; bg = 'white';      break
+        case 'pink':   text = '#f66';          bg = '#fbc';       break
+        case 'red':    text = '#a00';          bg = '#f77';       break
+        case 'orange': text = 'orangered';     bg = 'orange';     break
+        case 'yellow': text = 'darkgoldenrod'; bg = 'yellow';     break
+        case 'green':  text = '#060';          bg = '#3c3';       break
+        case 'blue':   text = 'darkblue';      bg = 'dodgerblue'; break
+        case 'black':  text = 'black';         bg = '#777';       break
+        case 'white':  text = '#abc';          bg = 'white';      break
     }
     return {
         color: text,
@@ -70,7 +71,7 @@ const flashStatusClass = computed(() => ({
             <!-- <img alt="You flashed this climb." src="../assets/flash.svg"> -->
             <Flash :class="flashStatusClass"/>
         </div>
-        <div class="icon container">
+        <div class="icon container" @click="$emit('deleteButtonClicked')">
             <img alt="Remove this climb from the log." src="../assets/delete.svg">
         </div>
     </div>

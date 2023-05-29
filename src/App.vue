@@ -41,6 +41,9 @@ const methods = {
   toggleFlash: function(dayIndex, climbIndex) {
     const bool = data[dayIndex].climbs[climbIndex].flash
     data[dayIndex].climbs[climbIndex].flash = !bool
+  },
+  deleteClimb: function(dayIndex, climbIndex) {
+    data[dayIndex].climbs.splice(climbIndex, 1)
   }
 }
 
@@ -81,6 +84,7 @@ const props = {
       @grade-selected="methods.setGrade"
       @guess-icon-clicked="methods.toggleGuess"
       @flash-icon-clicked="methods.toggleFlash"
+      @delete-button-clicked="methods.deleteClimb"
     />
   </article>
 </template>

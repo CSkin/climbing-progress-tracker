@@ -20,7 +20,8 @@ const emit = defineEmits([
     'addButtonClicked',
     'gradeSelected',
     'guessIconClicked',
-    'flashIconClicked'
+    'flashIconClicked',
+    'deleteButtonClicked'
 ])
 
 const inputDate = ref(returnTodayString())
@@ -81,6 +82,7 @@ const handleGradeSelection = function(climbIndex, newValue) {
             @grade-selected="handleGradeSelection"
             @guess-icon-clicked="$emit('guessIconClicked', dayIndex, climbIndex)"
             @flash-icon-clicked="$emit('flashIconClicked', dayIndex, climbIndex)"
+            @delete-button-clicked="$emit('deleteButtonClicked', dayIndex, climbIndex)"
         />
         <button id="add-button" type="button" @click="$emit('addButtonClicked', inputDate, headerDate)">
             <Add />
@@ -111,7 +113,7 @@ section {
 }
 
 h1 {
-    font-size: 1.5em;
+    font-size: 2em;
 }
 
 #date-picker-container {
