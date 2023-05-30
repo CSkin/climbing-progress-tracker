@@ -5,6 +5,7 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/climbing-progress-tracker/',
   plugins: [vue()],
   resolve: {
     alias: {
