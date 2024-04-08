@@ -92,13 +92,20 @@ const flashStatusClass = computed(() => ({
 
 select {
     margin-left: 1em;
-    width: 25vw;
-    height: 4vh;
+    width: 30vw;
+    height: 6vh;
     border: solid var(--color-text) 2px;
     border-radius: 0.7vh;
-    font-size: 1.5em;
+    font-size: 1.3em;
     font-weight: bold;
-    text-indent: 4px;
+}
+
+@media (min-width: 400px) {
+    select {
+        height: 4.5vh;
+        font-size: 1.5em;
+        text-indent: 4px;
+    }   
 }
 
 img, svg {

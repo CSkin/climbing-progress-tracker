@@ -61,6 +61,7 @@ const handleGradeSelection = function(climbIndex, newValue) {
 
 <template>
     <section id="header-container" @click="handleHeaderSelection">
+        <Back @click.stop="props.nav.viewTimeline"/>
         <header id="date-header">
             <h1> {{ headerDate }} </h1>
             <Edit />
@@ -92,12 +93,11 @@ const handleGradeSelection = function(climbIndex, newValue) {
             <Add />
         </button>
     </section>
-    <Back @click="props.nav.viewTimeline"/>
 </template>
 
 <style scoped>
 section {
-    --header-height: calc(4vh + 75px);
+    --header-height: 14vh;
 }
 
 #header-container {
@@ -108,8 +108,18 @@ section {
     align-items: center;
 }
 
+.back {
+    top: auto;
+    bottom: auto;
+    left: 2vw;
+    width: 10vw;
+    height: 10vw;
+    max-width: 65px;
+    max-height: 65px;
+}
+
 #date-header {
-    max-width: calc(100% - 8vw - 150px);
+    max-width: 72vw;
 }
 
 #date-header > * {
@@ -197,7 +207,7 @@ h3:nth-of-type(1) {
 h3:nth-of-type(1) {
     flex: 1.75;
     text-align: left;
-} 
+}
 
 button {
     height: 8vh;
