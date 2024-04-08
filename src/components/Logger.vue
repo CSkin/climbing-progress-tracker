@@ -120,14 +120,13 @@ section {
 
 #date-header {
     max-width: 72vw;
-}
-
-#date-header > * {
-    display: inline-block;
+    display: flex;
+    align-items: center;
 }
 
 h1 {
     font-size: 2em;
+    line-height: 1.2;
 }
 
 #date-picker-container {
