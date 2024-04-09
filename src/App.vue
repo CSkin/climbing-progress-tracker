@@ -65,6 +65,9 @@ const toggleFlash = function(dayIndex, climbIndex) {
 
 const deleteClimb = function(dayIndex, climbIndex) {
   data[dayIndex].climbs.splice(climbIndex, 1)
+  if ( data[dayIndex].climbs.length == 0 ) {
+    data.splice(dayIndex, 1)
+  }
 }
 
 const props = {

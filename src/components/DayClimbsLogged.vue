@@ -68,14 +68,16 @@ const gridColumnsStyle = computed(() => {
 }
 
 .date {
-    height: var(--day-header-height);
+    display: flex;
+    align-items: center;
 }
 
-.date > * {
-    display: inline-block;
+h1 {
+    line-height: 1.2;
 }
 
 .climbs-logged {
+    margin-top: 0.3em;
     border-top: solid var(--color-text);
     padding-top: 0.6em;
     display: grid;

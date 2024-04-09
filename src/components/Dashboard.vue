@@ -25,6 +25,13 @@ const props = defineProps({
 </template>
 
 <style scoped>
+img {
+    -moz-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+}
+
 h1, p {
     text-align: center;
 }
