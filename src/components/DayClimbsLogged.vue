@@ -62,6 +62,7 @@ const gridColumnsStyle = computed(() => {
 }
 
 .day-content {
+    margin-top: 0.3em;
     margin-left: 1em;
     --day-content-max-width: 75vw;
     max-width: var(--day-content-max-width);

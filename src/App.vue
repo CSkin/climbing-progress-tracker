@@ -7,6 +7,19 @@ import { scrollIntoView } from './main'
 
 const data = reactive([])
 
+// Saving
+const storeData = function() {
+  const jsonData = JSON.stringify(data)
+  localStorage.setItem('data', jsonData)
+}
+
+// Loading
+if ( localStorage.length > 0 ) {
+  const storedData = localStorage.getItem('data')
+  const parsedData = JSON.parse(storedData)
+  parsedData.forEach( day => { data.push(day) })
+}
+
 const dashboard = ref(null)
 const timeline = ref(null)
 const logger = ref(null)
@@ -17,6 +30,7 @@ const nav = {
   },
   viewTimeline: function() {
     scrollIntoView(timeline.value)
+    storeData()
   },
   viewLogger: function() {
     scrollIntoView(logger.value)
