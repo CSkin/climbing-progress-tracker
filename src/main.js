@@ -10,12 +10,18 @@ export function scrollIntoView(el) {
 }
 
 export function returnTodayString() {
-    const today = new Date()
-    const yyyy = String(today.getFullYear())
-    const mm = String(today.getMonth() + 1).padStart(2, '0')
-    const dd = String(today.getDate()).padStart(2, '0')
+    let today = new Date()
+    let yyyy = String(today.getFullYear())
+    let mm = String(today.getMonth() + 1).padStart(2, '0')
+    let dd = String(today.getDate()).padStart(2, '0')
 
     return yyyy + '-' + mm + '-' + dd
+}
+
+export function daysBetween (pastDay, futureDay) {
+    let pastDate = new Date(pastDay + "T12:00:00")
+    let futureDate = new Date(futureDay + "T12:00:00")
+    return (futureDate.getTime() - pastDate.getTime()) / 86400000 // number of ms in a day
 }
 
 export function switchGradeColorStyle(grade) {

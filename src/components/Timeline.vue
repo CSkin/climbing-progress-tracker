@@ -4,6 +4,7 @@ import DayOff from './DayOff.vue'
 import DayClimbsLogged from './DayClimbsLogged.vue'
 import Back from './Back.vue'
 import Add from './Add.vue'
+import { daysBetween } from '../main'
 
 const props = defineProps({
     data: Array,
@@ -20,9 +21,9 @@ const timelineDataMap = computed(() => {
     daysOn.forEach((day, index, array) => {
         timelineDataMap.push(index)
         if ( index < array.length - 1 ) { // if this isn't the last element in the array
-            currDayOn = new Date(array[index].date + "T12:00:00")
-            nextDayOn = new Date(array[index+1].date + "T12:00:00")
-            numDaysOff = (nextDayOn.getTime() - currDayOn.getTime()) / 86400000 - 1 // number of ms in a day
+        currDayOn = array[index]
+        nextDayOn = array[index+1]
+        numDaysOff = daysBetween(currDayOn.date, nextDayOn.date) - 1
             for (let n = 0; n < numDaysOff; n++) {
                 timelineDataMap.push(-1)
             }
