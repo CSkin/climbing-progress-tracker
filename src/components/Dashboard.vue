@@ -54,11 +54,12 @@ const climberRating = computed(() => {
             guessAdj = climb.guess ? -1 : 0
             flashAdj = climb.flash ? 1 : 0
             adjustedGrade = numericGrade + recencyAdj + guessAdj + flashAdj
+            adjustedGrade = Math.max(adjustedGrade, 0)
             climberRatingValues.push(adjustedGrade)
         })
     })
 
-    climberRatingValues.sort((a, b) => (a + b))
+    climberRatingValues.sort((a, b) => (a - b))
 
     for (let index = 0; index < climberRatingValues.length; index++) {
         currentValue = climberRatingValues[index]
