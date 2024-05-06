@@ -48,7 +48,7 @@ const addDay = function(date, header) {
     climbs: []
   })
   // sort the Day objects by their Date property
-  data.sort((day1, day2) => (day1.date > day2.date) ? 1 : -1)
+  data.sort((day1, day2) => (day1.date > day2.date))
 }
 
 const addClimb = function(date, header) {

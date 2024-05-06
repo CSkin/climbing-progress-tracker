@@ -36,14 +36,25 @@ const squareColorStyle = computed(() => {
 .icon-container {
     width: 100%;
     height: 100%;
-    padding: 4px;
+    padding: 2px;
     display: flex;
     flex-direction: row-reverse;
     align-items: end;
 }
 
 svg {
-    height: 1.5em;
-    margin: 2px;
+    height: 1em;
+    margin: 1px;
+}
+
+@media (min-width: 400px) {
+    .icon-container {
+        padding: 4px;
+    }
+
+    svg {
+        height: 2em;
+        margin: 2px;
+    }
 }
 </style>
