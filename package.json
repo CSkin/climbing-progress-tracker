@@ -10,7 +10,9 @@
     "host": "vite --host"
   },
   "dependencies": {
-    "vue": "^3.2.47"
+    "chart.js": "^4.4.3",
+    "vue": "^3.2.47",
+    "vue-chartjs": "^5.3.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
