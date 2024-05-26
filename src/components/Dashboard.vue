@@ -1,6 +1,7 @@
 <script setup>
 import { computed, defineProps } from 'vue'
 import Continue from './Continue.vue'
+import Graph from './Graph.vue'
 import { returnTodayString, daysBetween, switchGradeColorStyle } from '../main'
 
 const props = defineProps({
@@ -35,21 +36,18 @@ const gradeNumericToColor = function(grade) {
     }
 }
 
-const climberRating = computed(() => {
-    let propsDataLength = props.data.length
-    if ( propsDataLength == 0 ) { return propsDataLength.toPrecision(2) }
-    
+const calculateRatingGivenDataAndDate = function(data, date) {
     let climberRatingValues = [],
-        today = returnTodayString(),
+        targetDate = date,
         numericGrade, recency, recencyAdj, guessAdj, flashAdj, adjustedGrade, // Adj = Adjustment
         currentValue, currentWeight, weightedValue,
         sumOfWeightedValues = 0,
         sumOfWeights = 0
 
-    props.data.forEach( day => {
+    data.forEach( day => {
         day.climbs.forEach( climb => {
             numericGrade = gradeColorToNumeric(climb.grade)
-            recency = daysBetween(day.date, today)
+            recency = daysBetween(day.date, targetDate)
             recencyAdj = recency * (1/14) * -1
             guessAdj = climb.guess ? -1 : 0
             flashAdj = climb.flash ? 1 : 0
@@ -69,7 +67,17 @@ const climberRating = computed(() => {
         sumOfWeights += currentWeight
     }
 
-    return ( sumOfWeightedValues / sumOfWeights ).toPrecision(2)
+    return ( sumOfWeightedValues / sumOfWeights )
+}
+
+const climberRating = computed(() => {
+    let propsDataLength = props.data.length,
+        rating
+        
+    if ( propsDataLength == 0 ) { rating = propsDataLength }
+    else { rating = calculateRatingGivenDataAndDate(props.data, returnTodayString()) }
+
+    return rating.toPrecision(2)
 })
 
 const climberColor = computed(() => {
@@ -79,6 +87,11 @@ const climberColor = computed(() => {
 const sectionColorStyle = computed(() => {
     return switchGradeColorStyle(climberColor.value.toLowerCase())
 })
+
+const graphProps = {
+    data: props.data,
+    calculateRating: calculateRatingGivenDataAndDate
+}
 </script>
 
 <template>
@@ -89,6 +102,7 @@ const sectionColorStyle = computed(() => {
     <section id="climber-rating" :style="sectionColorStyle">
         <h1> {{ climberColor }} </h1>
         <h1> {{ climberRating }} </h1>
+        <Graph v-bind="graphProps"/>
     </section>
 
     <section id="continue-prompt">
