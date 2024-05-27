@@ -35,11 +35,13 @@ const chartDataObject = computed(() => {
     return chartDataObject
 })
 
-const chartData = {
-    datasets: [{ 
-        data: chartDataObject.value
-    }]
-}
+const chartData = computed(() => {
+    let datasetsArray = []
+
+    datasetsArray.push({ data: chartDataObject.value })
+
+    return { datasets: datasetsArray }
+})
 
 const chartOptions = {
     scales: {
