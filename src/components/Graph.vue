@@ -18,7 +18,8 @@ const chartDuration = { months: 1 }
 const chartDataObject = computed(() => {
     let beginningOfTime, beginningOfTimeMinusOneDay, dataSinceTimeBegan,
         currentDay, currentDayPlusOneDay, dataThruCurrentDay, climberRatingOnCurrentDay,
-        chartDataObject = {}
+        chartDataObject = {},
+        today = returnTodayString()
     
     beginningOfTime = sub(returnTodayString(), chartDuration)
     beginningOfTimeMinusOneDay = sub(beginningOfTime, { days: 1 }) // subtract a day so we can use isAfter below
@@ -31,6 +32,13 @@ const chartDataObject = computed(() => {
         climberRatingOnCurrentDay = props.calculateRating(dataThruCurrentDay, currentDay)
         chartDataObject[currentDay] = climberRatingOnCurrentDay
     })
+
+    // Make sure the last data point in the graph is always today
+    if ( Object.keys(chartDataObject).includes(today) ) {
+        // do nothing
+    } else {
+        chartDataObject[today] = props.calculateRating(props.data, today)
+    }
 
     return chartDataObject
 })
