@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard.vue'
 import Timeline from './components/Timeline.vue'
 import Logger from './components/Logger.vue'
 import { scrollIntoView } from './main'
+import { compareAsc } from 'date-fns'
 
 const data = reactive([])
 
@@ -48,7 +49,7 @@ const addDay = function(date, header) {
     climbs: []
   })
   // sort the Day objects by their Date property
-  data.sort((day1, day2) => (day1.date > day2.date))
+  data.sort((day1, day2) => (compareAsc(day1.date, day2.date)))
 }
 
 const addClimb = function(date, header) {
