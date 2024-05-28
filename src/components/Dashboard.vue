@@ -56,8 +56,8 @@ const calculateRatingGivenDataAndDate = function(data, date) {
             climberRatingValues.push(adjustedGrade)
         })
     })
-
-    climberRatingValues.sort((a, b) => (a < b)) // Descending order
+    
+    climberRatingValues.sort((a, b) => (b - a)) // Descending order
 
     for (let index = 0; index < climberRatingValues.length; index++) {
         currentValue = climberRatingValues[index]
