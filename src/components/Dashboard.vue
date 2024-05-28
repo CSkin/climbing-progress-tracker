@@ -88,10 +88,13 @@ const sectionColorStyle = computed(() => {
     return switchGradeColorStyle(climberColor.value.toLowerCase())
 })
 
-const graphProps = {
-    data: props.data,
-    calculateRating: calculateRatingGivenDataAndDate
-}
+const graphProps = computed(() => {
+    return {
+        data: props.data,
+        calculateRating: calculateRatingGivenDataAndDate,
+        fgColor: sectionColorStyle.value.color
+    }
+})
 </script>
 
 <template>

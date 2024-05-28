@@ -27,17 +27,21 @@ export function daysBetween (pastDay, futureDay) {
 export function switchGradeColorStyle(grade) {
     let fg, bg
     switch (grade) {
-        case 'pink':   fg = 'black'; bg = '#ff80bf'; break
-        case 'red':    fg = 'white'; bg = '#d00';    break
-        case 'orange': fg = 'black'; bg = '#ff7500'; break
-        case 'yellow': fg = 'black'; bg = '#dd0';    break
-        case 'green':  fg = 'white'; bg = '#006600'; break
-        case 'blue':   fg = 'white'; bg = '#00d';    break
-        case 'black':  fg = 'white'; bg = 'black';   break
-        case 'white':  fg = 'black'; bg = 'white';   break
+        case 'pink':   fg = '#000'; bg = '#ff80bf'; break
+        case 'red':    fg = '#fff'; bg = '#d00';    break
+        case 'orange': fg = '#000'; bg = '#ff7500'; break
+        case 'yellow': fg = '#000'; bg = '#dd0';    break
+        case 'green':  fg = '#fff'; bg = '#006600'; break
+        case 'blue':   fg = '#fff'; bg = '#00d';    break
+        case 'black':  fg = '#fff'; bg = '#000';    break
+        case 'white':  fg = '#000'; bg = '#fff';    break
     }
     return {
         color: fg,
         backgroundColor: bg
     }
+}
+
+export function getViewportWidth() {
+    return window.visualViewport.width
 }

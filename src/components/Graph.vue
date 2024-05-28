@@ -4,13 +4,14 @@ import { Line } from 'vue-chartjs'
 import { Chart as ChartJS, LineElement, PointElement, TimeScale, LinearScale, Tooltip } from 'chart.js'
 import 'chartjs-adapter-date-fns'
 import { add, sub, isAfter, isBefore } from 'date-fns'
-import { returnTodayString } from '../main'
+import { returnTodayString, getViewportWidth } from '../main'
 
 ChartJS.register(LineElement, PointElement, TimeScale, LinearScale, Tooltip)
 
 const props = defineProps({
     data: Array,
-    calculateRating: Function
+    calculateRating: Function,
+    fgColor: String
 })
 
 const chartDuration = { months: 1 }
@@ -44,23 +45,35 @@ const chartDataObject = computed(() => {
 })
 
 const chartData = computed(() => {
-    let datasetsArray = []
-
-    datasetsArray.push({ data: chartDataObject.value })
-
-    return { datasets: datasetsArray }
+    return {
+        datasets: [{
+            data: chartDataObject.value
+        }]
+    }
 })
 
-const chartOptions = {
-    scales: {
-        x: {
-            type: 'time',
-            time: {
-                unit: 'day'
+const chartOptions = computed(() => {
+    return { 
+        scales: {
+            x: {
+                type: 'time',
+                time: { unit: 'day' },
+                ticks: { color: props.fgColor },
+                grid: { color: 'rgba(50%,50%,50%,0.5)' }
+            },
+            y: {
+                ticks: { color: props.fgColor },
+                grid: { color: 'rgba(50%,50%,50%,0.5)' }
             }
-        }
+        },
+        borderColor: props.fgColor,
+        borderWidth: 1,
+        color: props.fgColor,
+        pointBackgroundColor: props.fgColor,
+        tension: 0,
+        layout: { padding: getViewportWidth()/50 }
     }
-}
+})
 </script>
 
 <template>
@@ -73,6 +86,6 @@ const chartOptions = {
 
 <style scoped>
 canvas {
-    max-height: 50vh
+    max-height: 50vh;
 }
 </style>
