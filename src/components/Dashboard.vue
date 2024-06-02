@@ -49,8 +49,8 @@ const calculateRatingGivenDataAndDate = function(data, date) {
             numericGrade = gradeColorToNumeric(climb.grade)
             recency = daysBetween(day.date, targetDate)
             recencyAdj = recency * (1/14) * -1
-            guessAdj = climb.guess ? -1 : 0
-            flashAdj = climb.flash ? 1 : 0
+            guessAdj = climb.guess ? -0.5 : 0
+            flashAdj = climb.flash ? 0.5 : 0
             adjustedGrade = numericGrade + recencyAdj + guessAdj + flashAdj
             adjustedGrade = Math.max(adjustedGrade, 0) // Prevent negative values
             climberRatingValues.push(adjustedGrade)
@@ -77,7 +77,7 @@ const climberRating = computed(() => {
     if ( propsDataLength == 0 ) { rating = propsDataLength }
     else { rating = calculateRatingGivenDataAndDate(props.data, returnTodayString()) }
 
-    return rating.toPrecision(2)
+    return rating.toPrecision(3)
 })
 
 const climberColor = computed(() => {
