@@ -24,16 +24,9 @@ const gradeColorToNumeric = function(grade) {
 }
 
 const gradeNumericToColor = function(grade) {
-    switch (Math.floor(grade)) {
-        case 0: return 'Pink'
-        case 1: return 'Red'
-        case 2: return 'Orange'
-        case 3: return 'Yellow'
-        case 4: return 'Green'
-        case 5: return 'Blue'
-        case 6: return 'Black'
-        case 7: return 'White'
-    }
+    let adjustedGrade = Math.floor(parseFloat(grade) + 0.5)
+    const gradeColorNameArray = [ 'Pink', 'Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Black', 'White' ]
+    return gradeColorNameArray[Math.min(adjustedGrade, 7)]
 }
 
 const calculateRatingGivenDataAndDate = function(data, date) {
@@ -90,8 +83,8 @@ const sectionColorStyle = computed(() => {
         nextGrade = Math.ceil(rating),
         decimal = rating - prevGrade,
         gradeColorHexArray = [ '#ff80bf', '#dd0000', '#ff7500', '#dddd00', '#006600', '#0000dd', '#000000', '#ffffff' ],
-        color1 = gradeColorHexArray[prevGrade],
-        color2 = gradeColorHexArray[nextGrade],
+        color1 = gradeColorHexArray[Math.min(prevGrade, 7)],
+        color2 = gradeColorHexArray[Math.min(nextGrade, 7)],
         color3 = {}
 
     function hexToRgbObject(hex) {
