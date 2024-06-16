@@ -2,10 +2,11 @@
 import { computed, defineProps } from 'vue';
 import Guess from './Guess.vue'
 import Flash from './Flash.vue'
+import Note from './Note.vue'
 import { switchGradeColorStyle } from '../main';
 
 const props = defineProps({
-    climb: Object, // grade, guess, flash, note
+    climb: Object, // grade, guess, flash, note, noteText
     index: Number
 })
 
@@ -13,6 +14,7 @@ defineEmits([
     'gradeSelected',
     'guessIconClicked',
     'flashIconClicked',
+    'noteIconClicked',
     'deleteButtonClicked'
 ])
 
@@ -28,6 +30,11 @@ const guessStatusClass = computed(() => ({
 const flashStatusClass = computed(() => ({
     disabled: !props.climb.flash,
     enabled: props.climb.flash
+}))
+
+const noteStatusClass = computed(() => ({
+    disabled: !props.climb.note,
+    enabled: props.climb.note
 }))
 </script>
 
@@ -58,6 +65,10 @@ const flashStatusClass = computed(() => ({
             <!-- <img alt="You flashed this climb." src="../assets/flash.svg"> -->
             <Flash :class="flashStatusClass"/>
         </div>
+        <div class="icon container" @click="$emit('noteIconClicked')">
+            <!-- <img alt="A note has been entered about this climb." src="../assets/note.svg"> -->
+            <Note :class="noteStatusClass"/>
+        </div>
         <div class="icon container" @click="$emit('deleteButtonClicked')">
             <img alt="Remove this climb from the log." src="../assets/delete.svg">
         </div>
@@ -81,7 +92,7 @@ const flashStatusClass = computed(() => ({
 }
 
 .dropdown {
-    flex: 1.75;
+    flex: 2.5;
     height: 100%;
 }
 
@@ -91,8 +102,8 @@ const flashStatusClass = computed(() => ({
 }
 
 select {
-    margin-left: 1em;
-    width: 30vw;
+    margin-left: 0.5em;
+    width: 85%;
     height: 6vh;
     border: solid var(--color-text) 2px;
     border-radius: 0.7vh;
@@ -102,6 +113,7 @@ select {
 
 @media (min-width: 400px) {
     select {
+        margin-left: 1em;
         height: 4.5vh;
         font-size: 1.5em;
         text-indent: 4px;

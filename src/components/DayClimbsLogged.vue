@@ -35,6 +35,7 @@ const gridColumnsStyle = computed(() => {
                     :grade="climb.grade"
                     :guess="climb.guess"
                     :flash="climb.flash"
+                    :note="climb.note"
                 />
             </div>
         </div>

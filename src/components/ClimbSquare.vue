@@ -2,12 +2,14 @@
 import { computed, defineProps } from 'vue'
 import Guess from './Guess.vue'
 import Flash from './Flash.vue'
+import Note from './Note.vue'
 import { switchGradeColorStyle } from '../main';
 
 const props = defineProps({
     grade: String,
     guess: Boolean,
-    flash: Boolean
+    flash: Boolean,
+    note: Boolean
 })
 
 const squareColorStyle = computed(() => {
@@ -18,6 +20,8 @@ const squareColorStyle = computed(() => {
 <template>
     <div class="climb-square" :style="squareColorStyle">
         <div class="icon-container">
+            <!-- <img alt="A note has been entered about this climb." src="../assets/note.svg"> -->
+            <Note v-if="props.note"/>
             <!-- <img alt="You flashed this climb." src="../assets/flash.svg"> -->
             <Flash v-if="props.flash"/>
             <!-- <img alt="This climb's rating is uncertain." src="../assets/guess.svg"> -->

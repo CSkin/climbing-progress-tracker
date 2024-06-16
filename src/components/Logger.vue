@@ -20,6 +20,7 @@ const emit = defineEmits([
     'gradeSelected',
     'guessIconClicked',
     'flashIconClicked',
+    'noteIconClicked',
     'deleteButtonClicked'
 ])
 
@@ -75,10 +76,11 @@ const handleGradeSelection = function(climbIndex, newValue) {
     </section>
     <section id="log-container">
         <header id="log-header">
-            <h3><span></span>GRADE</h3>
-            <h3>GUESS?</h3>
-            <h3>FLASH?</h3>
-            <h3>DELETE</h3>
+            <h3><span></span>Grade</h3>
+            <h3>Guess?</h3>
+            <h3>Flash?</h3>
+            <h3>Note</h3>
+            <h3>Delete</h3>
         </header>
         <Climb
             v-for="(climb, climbIndex) in climbs"
@@ -87,6 +89,7 @@ const handleGradeSelection = function(climbIndex, newValue) {
             @grade-selected="handleGradeSelection"
             @guess-icon-clicked="$emit('guessIconClicked', dayIndex, climbIndex)"
             @flash-icon-clicked="$emit('flashIconClicked', dayIndex, climbIndex)"
+            @note-icon-clicked="$emit('noteIconClicked', dayIndex, climbIndex)"
             @delete-button-clicked="$emit('deleteButtonClicked', dayIndex, climbIndex)"
         />
         <button id="add-button" type="button" @click="$emit('addButtonClicked', inputDate, headerDate)">
@@ -189,22 +192,29 @@ h1 {
 h3 {
     flex: 1;
     text-align: center;
+    font-size: 1em;
     color: #808080;
     line-height: 1;
 }
 
 h3 > span {
     display: inline-block;
-    width: 1.5em;
+    width: 0.6em;
 }
 
-h3:nth-of-type(1) {
-    flex: 1.75;
-    text-align: left;
+@media (min-width: 400px) {
+    h3 {
+        font-size: default;
+    }
+
+    h3 > span {
+        width: 1.5em;
+    }
 }
 
+
 h3:nth-of-type(1) {
-    flex: 1.75;
+    flex: 2.5;
     text-align: left;
 }
 

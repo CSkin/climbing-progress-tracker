@@ -60,7 +60,8 @@ const addClimb = function(date, header) {
     grade: "pink",
     guess: false,
     flash: false,
-    note: null
+    note: false,
+    noteText: null
   })
 }
 
@@ -76,6 +77,11 @@ const toggleGuess = function(dayIndex, climbIndex) {
 const toggleFlash = function(dayIndex, climbIndex) {
   const bool = data[dayIndex].climbs[climbIndex].flash
   data[dayIndex].climbs[climbIndex].flash = !bool
+}
+
+const toggleNote = function(dayIndex, climbIndex) {
+  const bool = data[dayIndex].climbs[climbIndex].note
+  data[dayIndex].climbs[climbIndex].note = !bool
 }
 
 const deleteClimb = function(dayIndex, climbIndex) {
@@ -105,6 +111,7 @@ const props = {
       @grade-selected="setGrade"
       @guess-icon-clicked="toggleGuess"
       @flash-icon-clicked="toggleFlash"
+      @note-icon-clicked="toggleNote"
       @delete-button-clicked="deleteClimb"
     />
   </article>
