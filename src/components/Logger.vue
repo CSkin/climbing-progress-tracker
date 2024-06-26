@@ -76,7 +76,7 @@ const handleGradeSelection = function(climbIndex, newValue) {
     </section>
     <section id="log-container">
         <header id="log-header">
-            <h3><span></span>Grade</h3>
+            <h3>Grade</h3>
             <h3>Guess?</h3>
             <h3>Flash?</h3>
             <h3>Note</h3>
@@ -185,6 +185,7 @@ h1 {
 
 #log-header {
     height: 3vh;
+    padding: 0 2vh;
     display: flex;
     align-items: center;
 }
@@ -197,18 +198,9 @@ h3 {
     line-height: 1;
 }
 
-h3 > span {
-    display: inline-block;
-    width: 0.6em;
-}
-
 @media (min-width: 400px) {
     h3 {
         font-size: default;
-    }
-
-    h3 > span {
-        width: 1.5em;
     }
 }
 
@@ -223,7 +215,7 @@ button {
     margin: 1vh 0 2vh 0;
     background-color: green;
     border: solid white 5px;
-    border-radius: 2.5vh;
+    border-radius: 2vh;
     display: flex;
     justify-content: center;
     align-items: center;
