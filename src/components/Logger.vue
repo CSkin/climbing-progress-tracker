@@ -62,7 +62,7 @@ const handleGradeSelection = function(climbIndex, newValue) {
 
 <template>
     <section id="header-container" @click="handleHeaderSelection">
-        <Back @click.stop="props.nav.viewTimeline"/>
+        <Back id="back" @click.stop="props.nav.viewTimeline"/>
         <header id="date-header">
             <h1> {{ headerDate }} </h1>
             <Edit />
@@ -111,7 +111,8 @@ section {
     align-items: center;
 }
 
-.back {
+#back {
+    position: absolute;
     top: auto;
     bottom: auto;
     left: 2vw;

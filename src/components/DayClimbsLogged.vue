@@ -44,27 +44,26 @@ const gridColumnsStyle = computed(() => {
 
 <style scoped>
 .container {
-    margin: 0 5vw 0 10vw;
+    margin: 0.2em 5vw 0.2em 10vw;
     display: flex;
     --day-header-height: 2.4em;
 }
 
 .bead {
-    width: 3vh;
+    width: 3em;
+    padding-top: 0.3em;
     display: flex;
     justify-content: center;
-    align-items: start;
 }
 
 .bead > svg {
-    margin-top: calc((var(--day-header-height) - 2.5vh) / 2);
-    height: 2.5vh;
+    height: 2em;
     fill: var(--color-day-climbs-logged);
 }
 
 .day-content {
     margin-top: 0.3em;
-    margin-left: 1em;
+    margin-left: 0.3em;
     --day-content-max-width: 75vw;
     max-width: var(--day-content-max-width);
 }

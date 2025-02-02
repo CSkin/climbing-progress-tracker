@@ -10,16 +10,15 @@ import Circle from './Circle.vue'
 
 <style scoped>
 div {
-    width: 3vh;
-    height: 1.333vh;
-    margin-left: 10vw;
+    width: 3em;
+    margin: 0.15em auto 0.15em 10vw;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 svg {
-    height: 1vh;
+    height: 0.7em;
     fill: var(--color-day-off);
 }
 </style>

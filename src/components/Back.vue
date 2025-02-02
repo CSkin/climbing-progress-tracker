@@ -4,8 +4,7 @@
 
 <template>
     <svg xmlns="http://www.w3.org/2000/svg"
-         viewBox="0 0 10 10"
-         class="back">
+         viewBox="0 0 10 10">
 
         <circle cx="5" cy="5" r="5"/>
 
@@ -18,10 +17,6 @@
 
 <style scoped>
 svg {
-    position: absolute;
-    top: 2vh;
-    left: 2vw;
-    height: 75px;   
     fill: var(--color-background-inv);
     stroke: var(--color-background);
     stroke-width: 1.333;

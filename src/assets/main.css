@@ -3,6 +3,7 @@
 main {
   height: 100%;
   overflow-x: scroll;
+  overflow-y: hidden;
   scroll-snap-type: x mandatory;
   display: flex;
 }

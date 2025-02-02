@@ -30,7 +30,7 @@ const timelineDataMap = computed(() => {
         }
     })
 
-    return timelineDataMap
+    return timelineDataMap.reverse()
 })
 
 const handleDaySelection = function(dayIndex) {
@@ -45,15 +45,31 @@ const handleDaySelection = function(dayIndex) {
 </script>
 
 <template>
-    <template v-for="day in timelineDataMap">
-        <DayOff v-if="Math.sign(day) == -1" />
-        <DayClimbsLogged v-else v-bind="props.data[day]" @click="handleDaySelection(day)"/>
-    </template>
-    <Back @click="props.nav.viewDashboard"/>
+    <section id="timeline-container">
+        <template v-for="day in timelineDataMap">
+            <DayOff v-if="Math.sign(day) == -1"/>
+            <DayClimbsLogged v-else v-bind="props.data[day]" @click="handleDaySelection(day)"/>
+        </template>
+    </section>
+    <Back id="back" @click="props.nav.viewDashboard"/>
     <Add id="add" @click="props.nav.viewLogger"/>
 </template>
 
 <style scoped>
+#timeline-container {
+    padding: 2em 0;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#back {
+    position: absolute;
+    top: 2vh;
+    left: 2vw;
+    height: 75px;
+}
+
 #add {
     position: absolute;
     bottom: 2vh;
