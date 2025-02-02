@@ -30,12 +30,12 @@ const gradeNumericToColor = function(grade) {
 }
 
 const calculateRatingGivenDataAndDate = function(data, date) {
-    let climberRatingValues = [],
+    let adjustedGrades = [],
         targetDate = date,
         numericGrade, recency, recencyAdj, guessAdj, flashAdj, adjustedGrade, // Adj = Adjustment
-        currentValue, currentWeight, weightedValue,
-        sumOfWeightedValues = 0,
-        sumOfWeights = 0
+        currentSurplus = 0, // stores the current surplus value as the calculation progresses
+        remainingDistance, // one minus the current surplus
+        fractionalProduct // determines what fraction of remainingDistance gets added to currentSurplus
 
     data.forEach( day => {
         day.climbs.forEach( climb => {
@@ -46,21 +46,21 @@ const calculateRatingGivenDataAndDate = function(data, date) {
             flashAdj = climb.flash ? 0.5 : 0
             adjustedGrade = numericGrade + recencyAdj + guessAdj + flashAdj
             adjustedGrade = Math.max(adjustedGrade, 0) // Prevent negative values
-            climberRatingValues.push(adjustedGrade)
+            adjustedGrades.push(adjustedGrade)
         })
     })
-    
-    climberRatingValues.sort((a, b) => (b - a)) // Descending order
 
-    for (let index = 0; index < climberRatingValues.length; index++) {
-        currentValue = climberRatingValues[index]
-        currentWeight = 1 / Math.pow(index+1, 2)
-        weightedValue = currentValue * currentWeight
-        sumOfWeightedValues += weightedValue
-        sumOfWeights += currentWeight
+    adjustedGrades.sort((a, b) => (b - a)) // Descending order
+    const hardestGrade = adjustedGrades.length > 0 ? adjustedGrades.shift() : 0  // get the highest adjusted grade on record
+    const speedFactor = 2 // how quickly the remaining distance is closed; lower = faster
+
+    while (adjustedGrades.length > 0) {
+        remainingDistance = 1 - currentSurplus
+        fractionalProduct = 1 / Math.pow(speedFactor, hardestGrade - adjustedGrades.shift() + 1)
+        currentSurplus += remainingDistance * fractionalProduct
     }
 
-    return ( sumOfWeightedValues / sumOfWeights )
+    return hardestGrade + currentSurplus
 }
 
 const climberRating = computed(() => {

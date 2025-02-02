@@ -30,7 +30,7 @@ const timelineDataMap = computed(() => {
         }
     })
 
-    return timelineDataMap.reverse()
+    return timelineDataMap.reverse() // we reverse it so we can render the timeline from the bottom up so it defaults to the most recent entry
 })
 
 const handleDaySelection = function(dayIndex) {
