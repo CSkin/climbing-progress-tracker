@@ -50,7 +50,7 @@ const gridColumnsStyle = computed(() => {
 }
 
 .bead {
-    width: 3em;
+    min-width: 3em;
     padding-top: 0.3em;
     display: flex;
     justify-content: center;
