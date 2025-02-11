@@ -18,7 +18,7 @@ const gradeColorToNumeric = function(grade) {
         'green':  4,
         'blue':   5,
         'black':  6,
-        'white':  7.5
+        'white':  7
     }
     return conversionTable[grade]
 }
