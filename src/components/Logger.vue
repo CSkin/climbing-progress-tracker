@@ -178,6 +178,7 @@ h1 {
     width: 100%;
     min-height: calc(100% - var(--header-height));
     padding: 2vh 4vw;
+    overflow-y: scroll;
 }
 
 #log-container > * {
