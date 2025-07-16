@@ -1,5 +1,6 @@
 <script setup>
 import { reactive, ref } from 'vue'
+import Settings from './components/Settings.vue'
 import Dashboard from './components/Dashboard.vue'
 import Timeline from './components/Timeline.vue'
 import Logger from './components/Logger.vue'
@@ -21,11 +22,15 @@ if ( localStorage.length > 0 ) {
   parsedData.forEach( day => { data.push(day) })
 }
 
+const settings = ref(null)
 const dashboard = ref(null)
 const timeline = ref(null)
 const logger = ref(null)
 
 const nav = {
+  viewSettings: function() {
+    scrollIntoView(settings.value)
+  },
   viewDashboard: function() {
     scrollIntoView(dashboard.value)
   },
@@ -98,6 +103,9 @@ const props = {
 </script>
 
 <template>
+  <article id="settings" ref="settings" @click="nav.viewDashboard">
+    <Settings v-bind="props"/>
+  </article>
   <article id="dashboard" ref="dashboard" @click="nav.viewTimeline">
     <Dashboard v-bind="props"/>
   </article>
@@ -124,6 +132,11 @@ article {
   display: flex;
   flex-direction: column;
   scroll-snap-align: center;
+}
+
+#settings {
+  align-items: center;
+  justify-content: space-around;
 }
 
 #dashboard {
