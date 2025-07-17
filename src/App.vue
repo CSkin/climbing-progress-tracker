@@ -103,10 +103,10 @@ const props = {
 </script>
 
 <template>
-  <article id="settings" ref="settings" @click="nav.viewDashboard">
+  <article id="settings" ref="settings">
     <Settings v-bind="props"/>
   </article>
-  <article id="dashboard" ref="dashboard" @click="nav.viewTimeline">
+  <article id="dashboard" ref="dashboard">
     <Dashboard v-bind="props"/>
   </article>
   <article id="timeline" ref="timeline">

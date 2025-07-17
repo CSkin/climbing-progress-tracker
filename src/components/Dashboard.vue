@@ -122,7 +122,7 @@ const graphProps = computed(() => {
 
 <template>
     <section id="app-logo">
-        <img alt="Vue logo" src="/src/assets/logo.svg" width="125" height="125" />            
+        <img class="flip-Y" alt="Vue logo" src="/src/assets/logo.svg" width="125" height="125" />            
     </section>
 
     <section id="climber-rating" :style="sectionColorStyle">
@@ -131,9 +131,17 @@ const graphProps = computed(() => {
         <Graph v-bind="graphProps"/>
     </section>
 
-    <section id="continue-prompt">
-        <p>Tap or swipe to view timeline</p>
-        <Continue />
+    <section id="nav-prompts">
+        <div id="nav-left" class="container" @click="props.nav.viewSettings">
+            <p class="long">Swipe left to view settings</p>
+            <p class="short">Settings</p>
+            <Continue class="flip-X"/>
+        </div>
+        <div id="nav-right" class="container" @click="props.nav.viewTimeline">
+            <p class="long">Swipe right to view timeline</p>
+            <p class="short">Timeline</p>
+            <Continue />
+        </div>
     </section>
 </template>
 
@@ -147,13 +155,6 @@ section {
     justify-content: center;
 }
 
-img {
-    -moz-transform: scaleY(-1);
-    -o-transform: scaleY(-1);
-    -webkit-transform: scaleY(-1);
-    transform: scaleY(-1);
-}
-
 h1, p {
     text-align: center;
 }
@@ -163,6 +164,33 @@ h1 {
 }
 
 p {
-    margin-bottom: 1em;
+    margin-bottom: 0.75em;
+}
+
+#nav-prompts {
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.flip-X {
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
+
+.flip-Y {
+    -moz-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
+}
+
+@media (max-width: 600px) {
+    p.long { display: none; }
+}
+
+@media (min-width: 601px) {
+    p.short { display: none; }
 }
 </style>

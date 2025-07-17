@@ -10,11 +10,14 @@ const props = defineProps({
 
 <template>
     <section id="app-logo">
-        <img alt="Vue logo" src="/src/assets/logo.svg" width="125" height="125" />            
+        <h1>
+            <img class="flip-Y" alt="Vue logo" src="/src/assets/logo.svg"/>
+            <span>&nbsp;Settings</span>
+        </h1>
     </section>
 
     <section id="settings">
-        <h1>Climb Grade Options</h1>
+        <h2>Climb Grade Options</h2>
         <fieldset>
             <legend>
                 <b>Select one or both:</b>
@@ -30,7 +33,7 @@ const props = defineProps({
         </fieldset>
     </section>
 
-    <section id="continue-prompt">
+    <section id="continue-prompt"  @click="props.nav.viewDashboard">
         <p>Tap or swipe to view dashboard</p>
         <Continue />
     </section>
@@ -46,22 +49,28 @@ section {
     justify-content: center;
 }
 
-img {
-    -moz-transform: scaleY(-1);
-    -o-transform: scaleY(-1);
-    -webkit-transform: scaleY(-1);
-    transform: scaleY(-1);
-}
-
-h1, p {
-    text-align: center;
-}
-
 h1 {
+    display: block;
     font-size: 2em;
 }
 
 p {
-    margin-bottom: 1em;
+    margin-bottom: 0.75em;
+}
+
+img {
+    height: 1em;
+    vertical-align: -0.125em;
+}
+
+label {
+    padding-left: 0.5em;
+}
+
+.flip-Y {
+    -moz-transform: scaleY(-1);
+    -o-transform: scaleY(-1);
+    -webkit-transform: scaleY(-1);
+    transform: scaleY(-1);
 }
 </style>
