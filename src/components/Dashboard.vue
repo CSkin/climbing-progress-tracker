@@ -6,7 +6,8 @@ import { returnTodayString, daysBetween, switchGradeColorStyle } from '../main'
 
 const props = defineProps({
     data: Array,
-    nav: Object
+    nav: Object,
+    settings: Object
 })
 
 const gradeColorToNumeric = function(grade) {

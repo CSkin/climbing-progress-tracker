@@ -12,7 +12,8 @@ import { returnTodayString } from '../main'
 
 const props = defineProps({
     data: Array,
-    nav: Object
+    nav: Object,
+    settings: Object
 })
 
 const emit = defineEmits([

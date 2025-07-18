@@ -4,8 +4,13 @@ import Continue from './Continue.vue'
 
 const props = defineProps({
     data: Array,
-    nav: Object
+    nav: Object,
+    settings: Object
 })
+
+const emit = defineEmits([
+    'checkboxClicked'
+])
 </script>
 
 <template>
@@ -23,11 +28,17 @@ const props = defineProps({
                 <b>Select one or both:</b>
             </legend>
             <div>
-                <input type="checkbox" id="colors" name="colors" checked />
+                <input type="checkbox" id="colors" name="colors" 
+                    :checked="props.settings.gradeOptions.colors" 
+                    @click="$emit('checkboxClicked', $event.target.name)"
+                />
                 <label for="colors">Boulders Climbing Gym Circuit Grading</label>
             </div>
             <div>
-                <input type="checkbox" id="numbers" name="numbers" />
+                <input type="checkbox" id="numbers" name="numbers" 
+                    :checked="props.settings.gradeOptions.numbers" 
+                    @click="$emit('checkboxClicked', $event.target.name)"
+                />
                 <label for="numbers">American V-Grades</label>
             </div>
         </fieldset>

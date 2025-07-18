@@ -22,14 +22,14 @@ if ( localStorage.length > 0 ) {
   parsedData.forEach( day => { data.push(day) })
 }
 
-const settings = ref(null)
+const settingsPage = ref(null)
 const dashboard = ref(null)
 const timeline = ref(null)
 const logger = ref(null)
 
 const nav = {
   viewSettings: function() {
-    scrollIntoView(settings.value)
+    scrollIntoView(settingsPage.value)
   },
   viewDashboard: function() {
     scrollIntoView(dashboard.value)
@@ -42,6 +42,13 @@ const nav = {
     scrollIntoView(logger.value)
   }
 }
+
+const settings = reactive({
+  gradeOptions: {
+    colors: true,
+    numbers: false
+  }
+})
 
 const findDayIndex = function(date) {
   return data.findIndex( (day) => day.date == date )
@@ -96,15 +103,49 @@ const deleteClimb = function(dayIndex, climbIndex) {
   }
 }
 
+const handleGradeOptionSelection = function(option) {
+  const colors = settings.gradeOptions.colors,
+        numbers = settings.gradeOptions.numbers
+  switch (option) {
+    case "colors":
+      console.log('Colors checkbox clicked.')
+      if (!colors) {
+        settings.gradeOptions.colors = true
+      } else {
+        // don't uncheck box unless other box is checked
+        if (numbers) {
+          settings.gradeOptions.colors = false
+        }
+      }
+      break
+    case "numbers":
+      console.log('Numbers checkbox clicked.')
+      if (!numbers) {
+        settings.gradeOptions.numbers = true
+      } else {
+        if (colors) {
+          settings.gradeOptions.numbers = false
+        }
+      }
+      break
+    default:
+      console.log('Unexpected option selected.')
+  }
+}
+
 const props = {
   data: data,
-  nav: nav
+  nav: nav,
+  settings: settings
 }
 </script>
 
 <template>
-  <article id="settings" ref="settings">
-    <Settings v-bind="props"/>
+  <article id="settings" ref="settingsPage">
+    <Settings 
+      v-bind="props"
+      @checkbox-clicked="handleGradeOptionSelection"
+    />
   </article>
   <article id="dashboard" ref="dashboard">
     <Dashboard v-bind="props"/>
@@ -134,12 +175,7 @@ article {
   scroll-snap-align: center;
 }
 
-#settings {
-  align-items: center;
-  justify-content: space-around;
-}
-
-#dashboard {
+#settings, #dashboard {
   align-items: center;
   justify-content: space-around;
 }
