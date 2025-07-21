@@ -109,23 +109,18 @@ const handleGradeOptionSelection = function(option) {
   switch (option) {
     case "colors":
       console.log('Colors checkbox clicked.')
-      if (!colors) {
-        settings.gradeOptions.colors = true
-      } else {
-        // don't uncheck box unless other box is checked
-        if (numbers) {
-          settings.gradeOptions.colors = false
-        }
+      // If colors is unchecked, check it and be done.
+      if (!colors) { settings.gradeOptions.colors = true }
+      // If colors is checked, uncheck it. Furthermore, if numbers is unchecked, check it.
+      else if (colors) { settings.gradeOptions.colors = false
+        if (!numbers) { settings.gradeOptions.numbers = true }
       }
       break
     case "numbers":
       console.log('Numbers checkbox clicked.')
-      if (!numbers) {
-        settings.gradeOptions.numbers = true
-      } else {
-        if (colors) {
-          settings.gradeOptions.numbers = false
-        }
+      if (!numbers) { settings.gradeOptions.numbers = true } 
+      else { settings.gradeOptions.numbers = false
+        if (!colors) { settings.gradeOptions.colors = true }
       }
       break
     default:
