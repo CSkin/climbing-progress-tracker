@@ -1,5 +1,5 @@
 <script setup>
-import { computed, defineProps } from 'vue'
+import { defineProps, defineEmits } from 'vue'
 import Continue from './Continue.vue'
 
 const props = defineProps({
