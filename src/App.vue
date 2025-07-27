@@ -69,7 +69,7 @@ const addClimb = function(date, header) {
   if ( dayIndex == -1 ){ addDay(date, header) }
   dayIndex = findDayIndex(date)
   data[dayIndex].climbs.push({
-    grade: "pink",
+    grade: "pink", // TODO: plug into settings
     guess: false,
     flash: false,
     note: false,

@@ -10,7 +10,7 @@ const props = defineProps({
     settings: Object
 })
 
-const gradeColorToNumeric = function(grade) {
+const gradeToNumeric = function(grade) {
     const conversionTable = {
         'pink':   0,
         'red':    1,
@@ -21,7 +21,11 @@ const gradeColorToNumeric = function(grade) {
         'black':  6,
         'white':  7
     }
-    return conversionTable[grade]
+    if (grade[0] == 'v') {
+        return parseInt(grade.slice(1))
+    } else {
+        return conversionTable[grade]
+    }
 }
 
 const gradeNumericToColor = function(grade) {
@@ -40,7 +44,7 @@ const calculateRatingGivenDataAndDate = function(data, date) {
 
     data.forEach( day => {
         day.climbs.forEach( climb => {
-            numericGrade = gradeColorToNumeric(climb.grade)
+            numericGrade = gradeToNumeric(climb.grade)
             recency = daysBetween(day.date, targetDate)
             recencyAdj = recency * (1/14) * -1
             guessAdj = climb.guess ? -0.5 : 0

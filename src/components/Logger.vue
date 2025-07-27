@@ -87,6 +87,7 @@ const handleGradeSelection = function(climbIndex, newValue) {
             v-for="(climb, climbIndex) in climbs"
             :climb="climb"
             :index="climbIndex"
+            :gradeOptions="props.settings.gradeOptions"
             @grade-selected="handleGradeSelection"
             @guess-icon-clicked="$emit('guessIconClicked', dayIndex, climbIndex)"
             @flash-icon-clicked="$emit('flashIconClicked', dayIndex, climbIndex)"
@@ -206,7 +207,6 @@ h3 {
         font-size: default;
     }
 }
-
 
 h3:nth-of-type(1) {
     flex: 2.5;
