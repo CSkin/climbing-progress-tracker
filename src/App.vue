@@ -1,5 +1,5 @@
 <script setup>
-import { reactive, ref } from 'vue'
+import { reactive, ref, onMounted } from 'vue'
 import Settings from './components/Settings.vue'
 import Dashboard from './components/Dashboard.vue'
 import Timeline from './components/Timeline.vue'
@@ -133,6 +133,10 @@ const props = {
   nav: nav,
   settings: settings
 }
+
+onMounted(() => {
+  scrollIntoView(dashboard.value, "instant")
+})
 </script>
 
 <template>

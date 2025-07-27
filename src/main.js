@@ -5,8 +5,9 @@ import './assets/main.css'
 
 createApp(App).mount('#app')
 
-export function scrollIntoView(el) {
-    el.scrollIntoView({ behavior: "smooth" });
+export function scrollIntoView(el, behavior) {
+    if (behavior) { el.scrollIntoView({ behavior: behavior }) }
+    else { el.scrollIntoView({ behavior: "smooth" }) }
 }
 
 export function returnTodayString() {
