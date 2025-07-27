@@ -19,7 +19,7 @@ defineEmits([
     'deleteButtonClicked'
 ])
 
-const gradeColorStyle = computed(() => {
+const selectColorStyle = computed(() => {
     return switchGradeColorStyle(props.climb.grade)
 })
 
@@ -46,7 +46,7 @@ const noteStatusClass = computed(() => ({
                 <select 
                     class="grade-selector" 
                     name="Climb grade" 
-                    :style="gradeColorStyle"
+                    :style="selectColorStyle"
                     @change="$emit('gradeSelected', props.index, $event.target.value)"
                 >
                     <!-- TODO: Use v-for -->
@@ -132,7 +132,7 @@ const noteStatusClass = computed(() => ({
 select {
     width: 90%;
     height: 2em;
-    border: solid var(--color-text) 2px;
+    border: solid medium;
     border-radius: 0.7vh;
     font-size: 1.3em;
     font-weight: bold;
@@ -141,7 +141,7 @@ select {
 input {
     width: 100%;
     height: 1.5em;
-    border: solid var(--color-text) 2px;
+    border: solid medium;
     border-radius: 0.7vh;
     font-size: 1.2em;
 }
