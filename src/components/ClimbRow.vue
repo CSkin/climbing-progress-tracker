@@ -141,7 +141,7 @@ select {
 input {
     width: 100%;
     height: 1.5em;
-    border: solid medium;
+    border: solid var(--color-text) medium;
     border-radius: 0.7vh;
     font-size: 1.2em;
 }
