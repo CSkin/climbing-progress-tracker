@@ -37,6 +37,20 @@ const noteStatusClass = computed(() => ({
     disabled: !props.climb.note,
     enabled: props.climb.note
 }))
+
+const gradeSelectorOptions = computed(() => {
+    const colors = ['pink', 'red', 'orange', 'yellow', 'green', 'blue', 'black', 'white'],
+          numbers = Array.from({ length: 16 }, (_, i) => `v${i}`)
+    let grade = props.climb.grade,
+        array = []
+
+    if (props.gradeOptions.colors) { array.push(...colors) } 
+    else if (colors.includes(grade)) { array.push(grade) }
+    if (props.gradeOptions.numbers) { array.push(...numbers) } 
+    else if (numbers.includes(grade)) { array.push(grade) }
+
+    return array
+})
 </script>
 
 <template>
@@ -49,31 +63,12 @@ const noteStatusClass = computed(() => ({
                     :style="selectColorStyle"
                     @change="$emit('gradeSelected', props.index, $event.target.value)"
                 >
-                    <!-- TODO: Use v-for -->
-                    <option value="pink" v-if="gradeOptions.colors || props.climb.grade == 'pink'" :selected="props.climb.grade == 'pink'">Pink</option>
-                    <option value="red" v-if="gradeOptions.colors || props.climb.grade == 'red'" :selected="props.climb.grade == 'red'">Red</option>
-                    <option value="orange" v-if="gradeOptions.colors || props.climb.grade == 'orange'" :selected="props.climb.grade == 'orange'">Orange</option>
-                    <option value="yellow" v-if="gradeOptions.colors || props.climb.grade == 'yellow'" :selected="props.climb.grade == 'yellow'">Yellow</option>
-                    <option value="green" v-if="gradeOptions.colors || props.climb.grade == 'green'" :selected="props.climb.grade == 'green'">Green</option>
-                    <option value="blue" v-if="gradeOptions.colors || props.climb.grade == 'blue'" :selected="props.climb.grade == 'blue'">Blue</option>
-                    <option value="black" v-if="gradeOptions.colors || props.climb.grade == 'black'" :selected="props.climb.grade == 'black'">Black</option>
-                    <option value="white" v-if="gradeOptions.colors || props.climb.grade == 'white'" :selected="props.climb.grade == 'white'">White</option>
-                    <option value="v0" v-if="gradeOptions.numbers || props.climb.grade == 'v0'" :selected="props.climb.grade == 'v0'">V0</option>
-                    <option value="v1" v-if="gradeOptions.numbers || props.climb.grade == 'v1'" :selected="props.climb.grade == 'v1'">V1</option>
-                    <option value="v2" v-if="gradeOptions.numbers || props.climb.grade == 'v2'" :selected="props.climb.grade == 'v2'">V2</option>
-                    <option value="v3" v-if="gradeOptions.numbers || props.climb.grade == 'v3'" :selected="props.climb.grade == 'v3'">V3</option>
-                    <option value="v4" v-if="gradeOptions.numbers || props.climb.grade == 'v4'" :selected="props.climb.grade == 'v4'">V4</option>
-                    <option value="v5" v-if="gradeOptions.numbers || props.climb.grade == 'v5'" :selected="props.climb.grade == 'v5'">V5</option>
-                    <option value="v6" v-if="gradeOptions.numbers || props.climb.grade == 'v6'" :selected="props.climb.grade == 'v6'">V6</option>
-                    <option value="v7" v-if="gradeOptions.numbers || props.climb.grade == 'v7'" :selected="props.climb.grade == 'v7'">V7</option>
-                    <option value="v8" v-if="gradeOptions.numbers || props.climb.grade == 'v8'" :selected="props.climb.grade == 'v8'">V8</option>
-                    <option value="v9" v-if="gradeOptions.numbers || props.climb.grade == 'v9'" :selected="props.climb.grade == 'v9'">V9</option>
-                    <option value="v10" v-if="gradeOptions.numbers || props.climb.grade == 'v10'" :selected="props.climb.grade == 'v10'">V10</option>
-                    <option value="v11" v-if="gradeOptions.numbers || props.climb.grade == 'v11'" :selected="props.climb.grade == 'v11'">V11</option>
-                    <option value="v12" v-if="gradeOptions.numbers || props.climb.grade == 'v12'" :selected="props.climb.grade == 'v12'">V12</option>
-                    <option value="v13" v-if="gradeOptions.numbers || props.climb.grade == 'v13'" :selected="props.climb.grade == 'v13'">V13</option>
-                    <option value="v14" v-if="gradeOptions.numbers || props.climb.grade == 'v14'" :selected="props.climb.grade == 'v14'">V14</option>
-                    <option value="v15" v-if="gradeOptions.numbers || props.climb.grade == 'v15'" :selected="props.climb.grade == 'v15'">V15</option>
+                    <option 
+                        v-for="option in gradeSelectorOptions" 
+                        :value="option"
+                        :selected="props.climb.grade == option">
+                        {{ option[0].toUpperCase() + option.slice(1) }}
+                    </option>
                 </select>
             </div>
             <div class="icon container" @click="$emit('guessIconClicked')">
