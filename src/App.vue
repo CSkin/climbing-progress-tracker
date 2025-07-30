@@ -1,10 +1,15 @@
 <script setup>
-import { reactive, ref, onMounted } from 'vue'
+import { reactive, ref, computed, onMounted } from 'vue'
 import Settings from './components/Settings.vue'
 import Dashboard from './components/Dashboard.vue'
 import Timeline from './components/Timeline.vue'
 import Logger from './components/Logger.vue'
-import { scrollIntoView } from './main'
+import { 
+  scrollIntoView, 
+  gradeNumericToColor, 
+  calculateRatingGivenDataAndDate, 
+  returnTodayString 
+} from './main'
 import { compareAsc } from 'date-fns'
 
 const data = reactive([])
@@ -64,12 +69,29 @@ const addDay = function(date, header) {
   data.sort((day1, day2) => (compareAsc(day1.date, day2.date)))
 }
 
+const climberRating = computed(() => {
+  let dataLength = data.length,
+      rating
+  if ( dataLength == 0 ) { rating = dataLength }
+  else { rating = calculateRatingGivenDataAndDate(data, returnTodayString()) }
+  return rating.toPrecision(3)
+})
+
+const defaultGrade = computed(() => {
+  let ratingMinusOne = Math.max(Math.floor(climberRating.value) - 1, 0) // climber's rating rounded down minus one, clamped to positive
+  if (!settings.gradeOptions.colors) {
+    return "v" + ratingMinusOne
+  } else {
+    return gradeNumericToColor(ratingMinusOne).toLowerCase()
+  }
+})
+
 const addClimb = function(date, header) {
   let dayIndex = findDayIndex(date)
   if ( dayIndex == -1 ){ addDay(date, header) }
   dayIndex = findDayIndex(date)
   data[dayIndex].climbs.push({
-    grade: "pink", // TODO: plug into settings
+    grade: defaultGrade.value,
     guess: false,
     flash: false,
     note: false,
