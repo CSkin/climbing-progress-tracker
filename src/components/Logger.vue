@@ -70,7 +70,7 @@ const handleGradeSelection = function(climbIndex, newValue) {
         </header>
         <div id="date-picker-container">
             <input type="date" id="date" name="date" v-model="inputDate">
-            <div id="screen">
+            <div id="custom-date-button">
                 <img alt="Open date picker" src="../assets/calendar.svg">
             </div>
         </div>
@@ -152,26 +152,21 @@ h1 {
 #date {
     width: calc(100% - 4px);
     height: calc(100% - 4px);
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
 }
 
-::-webkit-datetime-edit {
-    display: none;
-}
-
-::-webkit-calendar-picker-indicator {
-    width: 100%;
-    height: 100%;
-}
-
-#screen {
+#custom-date-button {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: var(--color-background-mute);
+    z-index: 1;
     pointer-events: none;
 }
 
-#screen > img {
+#custom-date-button > img {
     height: 100%;
     filter: invert(0);
 }
